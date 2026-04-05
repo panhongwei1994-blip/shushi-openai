@@ -357,7 +357,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 										))
 									)}
 								</div>
-								<div className="mt-3 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] px-1 pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+								<div className="mt-3 -mx-4 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
 									<div className="space-y-3 text-sm">
 										<div className="flex justify-between"><span>{labels.cart.subtotal}</span><span>{formatPrice(locale, subtotal)}</span></div>
 										<div className="flex justify-between"><span>{labels.cart.deliveryFee}</span><span>{deliveryFee === 0 ? 'Free' : formatPrice(locale, deliveryFee)}</span></div>
