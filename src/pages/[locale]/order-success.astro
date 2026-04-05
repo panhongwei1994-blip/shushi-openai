@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SuccessClient } from '../../components/SuccessClient';
+import { getDictionary } from '../../lib/translations';
+import { isLocale, locales, type Locale } from '../../lib/i18n';
+
+export function getStaticPaths() {
+	return locales.map((locale) => ({ params: { locale } }));
+}
+
+const localeParam = Astro.params.locale ?? 'en';
+if (!isLocale(localeParam)) throw new Error(`Unsupported locale: ${localeParam}`);
+const locale = localeParam as Locale;
+const dict = getDictionary(locale);
+const pathname = `/${locale}/order-success/`;
+---
+
+<BaseLayout
+	locale={locale}
+	title={dict.meta.successTitle}
+	description={dict.success.subtitle}
+	pathname={pathname}
+>
+	<main class="section-shell py-14">
+		<SuccessClient
+			client:load
+			locale={locale}
+			labels={dict.success}
+		/>
+	</main>
+</BaseLayout>

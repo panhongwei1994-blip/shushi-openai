@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CheckoutClient } from '../../components/CheckoutClient';
+import { getDictionary } from '../../lib/translations';
+import { isLocale, locales, type Locale } from '../../lib/i18n';
+
+export function getStaticPaths() {
+	return locales.map((locale) => ({ params: { locale } }));
+}
+
+const localeParam = Astro.params.locale ?? 'en';
+if (!isLocale(localeParam)) throw new Error(`Unsupported locale: ${localeParam}`);
+const locale = localeParam as Locale;
+const dict = getDictionary(locale);
+const pathname = `/${locale}/checkout/`;
+---
+
+<BaseLayout
+	locale={locale}
+	title={dict.meta.checkoutTitle}
+	description={dict.checkout.subtitle}
+	pathname={pathname}
+>
+	<main class="section-shell py-10">
+		<div class="mb-8 flex items-center justify-between gap-4">
+			<a href={`/${locale}/`} class="text-sm font-medium text-[color:var(--muted)]">← {dict.checkout.backToMenu}</a>
+			<a href={`/${locale}/`} class="text-lg font-semibold text-[color:var(--ink)]">Shushi</a>
+		</div>
+		<CheckoutClient
+			client:load
+			locale={locale}
+			labels={{
+				checkout: dict.checkout,
+				cart: {
+					subtotal: dict.cart.subtotal,
+					deliveryFee: dict.cart.deliveryFee,
+					total: dict.cart.total,
+					remove: dict.cart.remove,
+				},
+			}}
+		/>
+	</main>
+</BaseLayout>

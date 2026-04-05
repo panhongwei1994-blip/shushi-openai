@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+import { absoluteUrl, localeIntlMap, localeLabels, locales, type Locale } from '../lib/i18n';
+import { siteConfig } from '../lib/site';
+
+interface Props {
+	locale: Locale;
+	title: string;
+	description: string;
+	pathname: string;
+	schema?: object[];
+}
+
+const { locale, title, description, pathname, schema = [] } = Astro.props;
+const site = new URL(siteConfig.url);
+const canonical = absoluteUrl(site, pathname);
+const alternates = locales.map((altLocale) => ({
+	locale: altLocale,
+	href: absoluteUrl(site, pathname.replace(`/${locale}/`, `/${altLocale}/`)),
+}));
+
+const restaurantSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Restaurant',
+	name: siteConfig.name,
+	description: siteConfig.description,
+	url: siteConfig.url,
+	telephone: siteConfig.phone,
+	email: siteConfig.email,
+	servesCuisine: ['Japanese', 'Sushi'],
+	priceRange: '$$',
+	acceptsReservations: 'False',
+	paymentAccepted: 'Cash, Credit Card, Stripe',
+	address: {
+		'@type': 'PostalAddress',
+		...siteConfig.address,
+	},
+	geo: {
+		'@type': 'GeoCoordinates',
+		...siteConfig.geo,
+	},
+};
+---
+
+<!doctype html>
+<html lang={localeIntlMap[locale]}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | {siteConfig.name}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<meta name="theme-color" content="#1c120d" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={`${title} | ${siteConfig.name}`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content={siteConfig.name} />
+		<meta name="twitter:card" content="summary_large_image" />
+		{alternates.map((alternate) => (
+			<link rel="alternate" hreflang={alternate.locale} href={alternate.href} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={absoluteUrl(site, '/en/')} />
+		<script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
+		{schema.map((entry) => <script type="application/ld+json" set:html={JSON.stringify(entry)} />)}
+	</head>
+	<body class="selection:bg-[color:var(--accent)]/20">
+		<slot />
+	</body>
+</html>

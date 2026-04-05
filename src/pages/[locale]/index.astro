@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LanguageSwitcher } from '../../components/LanguageSwitcher';
+import { ShopExperience } from '../../components/ShopExperience';
+import { menuCategories, menuProducts } from '../../data/menu';
+import { getDictionary } from '../../lib/translations';
+import { isLocale, locales, type Locale } from '../../lib/i18n';
+import { siteConfig } from '../../lib/site';
+
+export function getStaticPaths() {
+	return locales.map((locale) => ({ params: { locale } }));
+}
+
+const localeParam = Astro.params.locale ?? 'en';
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam as Locale;
+const dict = getDictionary(locale);
+const pathname = `/${locale}/`;
+
+const menuSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Menu',
+	name: `${siteConfig.name} menu`,
+	hasMenuSection: menuCategories.map((category) => ({
+		'@type': 'MenuSection',
+		name: dict.menu.categories[category],
+		hasMenuItem: menuProducts
+			.filter((product) => product.category === category)
+			.map((product) => ({
+				'@type': 'MenuItem',
+				name: product.title[locale],
+				description: product.description[locale],
+				image: `${siteConfig.url}${product.image}`,
+				offers: {
+					'@type': 'Offer',
+					priceCurrency: siteConfig.currency,
+					price: product.price,
+				},
+			})),
+	})),
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: dict.seo.faqs.map((faq) => ({
+		'@type': 'Question',
+		name: faq.q,
+		acceptedAnswer: { '@type': 'Answer', text: faq.a },
+	})),
+};
+
+const bootstrappedCatalog = {
+	currency: siteConfig.currency,
+	locale,
+	categories: menuCategories,
+	products: menuProducts.map((product) => ({
+		id: product.id,
+		slug: product.slug,
+		category: product.category,
+		price: product.price,
+		title: product.title[locale],
+		description: product.description[locale],
+	})),
+};
+---
+
+<BaseLayout
+	locale={locale}
+	title={dict.meta.homeTitle}
+	description={dict.meta.homeDescription}
+	pathname={pathname}
+	schema={[menuSchema, faqSchema]}
+>
+	<header class="section-shell pt-6">
+		<div class="paper-panel fade-up flex items-center justify-between rounded-full px-5 py-4">
+			<a href={pathname} class="flex items-center gap-3">
+				<span class="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--ink)] text-sm font-semibold text-white">寿</span>
+				<div>
+					<p class="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">{siteConfig.tagline}</p>
+					<p class="text-lg font-semibold">{siteConfig.name}</p>
+				</div>
+			</a>
+			<nav class="hidden items-center gap-6 text-sm font-medium text-[color:var(--muted)] md:flex">
+				<a href="#menu">{dict.nav.menu}</a>
+				<a href="#story">{dict.nav.story}</a>
+				<a href={`/${locale}/checkout/`}>{dict.nav.checkout}</a>
+			</nav>
+			<LanguageSwitcher client:load currentLocale={locale} pathname={pathname} />
+		</div>
+	</header>
+
+	<main class="pb-20">
+		<section class="section-shell pt-8 sm:pt-10">
+			<div class="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_420px]">
+				<div class="paper-panel grain-mask fade-up overflow-hidden rounded-[2.5rem] p-6 sm:p-10">
+					<div class="pill bg-[color:var(--accent)]/10 text-[color:var(--accent)]">{dict.hero.eyebrow}</div>
+					<h1 class="mt-6 max-w-3xl text-5xl font-semibold leading-tight sm:text-6xl">{dict.hero.title}</h1>
+					<p class="mt-6 max-w-2xl text-base leading-8 text-[color:var(--muted)]">{dict.hero.subtitle}</p>
+					<div class="mt-8 flex flex-wrap gap-3">
+						<a href="#menu" class="rounded-full bg-[color:var(--ink)] px-6 py-3 font-medium text-white transition hover:bg-[color:var(--accent)]">{dict.hero.primaryCta}</a>
+						<a href={`/${locale}/checkout/`} class="rounded-full border border-[color:var(--line)] bg-white/70 px-6 py-3 font-medium">{dict.hero.secondaryCta}</a>
+					</div>
+					<div class="mt-10 grid gap-3 sm:grid-cols-3">
+						{dict.highlights.map((item, index) => (
+							<div class="rounded-[1.75rem] bg-white/60 p-4" style={`animation-delay:${index * 80}ms`}>
+								<p class="text-sm leading-6 text-[color:var(--muted)]">{item}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="fade-up rounded-[2.5rem] bg-[linear-gradient(160deg,#1f140f_0%,#692d1d_50%,#c79851_100%)] p-6 text-white shadow-2xl" style="animation-delay:120ms">
+					<div class="flex h-full flex-col justify-between rounded-[2rem] border border-white/15 p-6">
+						<div>
+							<p class="text-xs uppercase tracking-[0.3em] text-white/70">Omakase delivery</p>
+							<h2 class="mt-4 text-3xl font-semibold">28 min</h2>
+							<p class="mt-3 max-w-sm text-sm leading-7 text-white/76">A high-conversion storefront with atmospheric branding, sticky checkout paths, and data structures ready for a commerce backend.</p>
+						</div>
+						<div class="mt-10 grid grid-cols-2 gap-3">
+							<div class="rounded-[1.75rem] bg-white/10 p-4 backdrop-blur">
+								<p class="text-xs uppercase tracking-[0.2em] text-white/60">Locale URLs</p>
+								<p class="mt-2 text-xl font-semibold">/en /zh /fr</p>
+							</div>
+							<div class="rounded-[1.75rem] bg-white/10 p-4 backdrop-blur">
+								<p class="text-xs uppercase tracking-[0.2em] text-white/60">Checkout paths</p>
+								<p class="mt-2 text-xl font-semibold">Stripe + COD</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="menu" class="section-shell pt-18">
+			<div class="mb-8">
+				<h2 class="section-title">{dict.menu.title}</h2>
+				<p class="section-copy mt-3">{dict.menu.subtitle}</p>
+			</div>
+			<ShopExperience
+				client:load
+				locale={locale}
+				checkoutHref={`/${locale}/checkout/`}
+				products={menuProducts}
+				labels={{
+					all: dict.menu.all,
+					categories: dict.menu.categories,
+					title: dict.menu.title,
+					subtitle: dict.menu.subtitle,
+					details: dict.menu.details,
+					addToCart: dict.menu.addToCart,
+					popular: dict.menu.popular,
+					tags: dict.tags,
+					cart: dict.cart,
+					product: dict.product,
+				}}
+			/>
+		</section>
+
+		<section id="story" class="section-shell pt-18">
+			<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_1fr]">
+				<div class="paper-panel rounded-[2.5rem] p-8">
+					<h2 class="section-title">{dict.story.title}</h2>
+					<p class="section-copy mt-4">{dict.story.body}</p>
+					<div class="mt-8 grid gap-3 sm:grid-cols-3">
+						{dict.story.stats.map((item) => (
+							<div class="rounded-[1.75rem] bg-white/70 p-4 text-sm leading-6 text-[color:var(--muted)]">{item}</div>
+						))}
+					</div>
+				</div>
+				<div class="paper-panel rounded-[2.5rem] p-8">
+					<p class="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{dict.seo.faqTitle}</p>
+					<div class="mt-6 space-y-4">
+						{dict.seo.faqs.map((faq) => (
+							<details class="rounded-[1.75rem] bg-white/70 p-5">
+								<summary class="cursor-pointer text-lg font-semibold">{faq.q}</summary>
+								<p class="mt-3 text-sm leading-7 text-[color:var(--muted)]">{faq.a}</p>
+							</details>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script type="application/json" id="menu-bootstrap" set:html={JSON.stringify(bootstrappedCatalog)} />
+</BaseLayout>
