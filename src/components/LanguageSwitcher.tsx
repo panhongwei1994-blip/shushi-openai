@@ -16,10 +16,10 @@ export function LanguageSwitcher({ currentLocale, pathname }: Props) {
 			<button
 				type="button"
 				onClick={() => setOpen((value) => !value)}
-				className="flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/70 px-4 py-2 text-sm font-medium text-[color:var(--ink)] shadow-sm backdrop-blur"
+				className="flex items-center gap-2 whitespace-nowrap rounded-full border border-[color:var(--line)] bg-white/70 px-4 py-2 text-sm font-medium text-[color:var(--ink)] shadow-sm backdrop-blur"
 				aria-expanded={open}
 			>
-				<span>{localeLabels[currentLocale]}</span>
+				<span className="inline-flex whitespace-nowrap leading-none">{localeLabels[currentLocale]}</span>
 				<span aria-hidden="true">▾</span>
 			</button>
 			{open && (
@@ -28,7 +28,7 @@ export function LanguageSwitcher({ currentLocale, pathname }: Props) {
 						<a
 							key={locale}
 							href={localePath(locale, normalized)}
-							className={`block rounded-2xl px-3 py-2 text-sm transition hover:bg-black/5 ${
+							className={`block whitespace-nowrap rounded-2xl px-3 py-2 text-sm transition hover:bg-black/5 ${
 								locale === currentLocale ? 'bg-[color:var(--accent)] text-white' : 'text-[color:var(--ink)]'
 							}`}
 						>
