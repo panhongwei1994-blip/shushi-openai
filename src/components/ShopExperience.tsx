@@ -376,21 +376,20 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 				)}
 			</div>
 
-			<div className={`fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden ${cartOpen ? 'hidden' : ''}`}>
+			<div className={`fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-3 pb-[calc(0.85rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden ${cartOpen ? 'hidden' : ''}`}>
 				<div className="mx-auto flex max-w-7xl items-center gap-3">
 					<button
 						type="button"
 						onClick={() => setCartOpen((value) => !value)}
-						className="flex min-w-0 flex-1 flex-col items-start rounded-[1.5rem] border border-[color:var(--line)] bg-white/80 px-4 py-3 text-left"
+						className="flex min-w-0 flex-1 flex-col items-start rounded-[1.5rem] border border-[color:var(--line)] bg-white/80 px-4 py-2.5 text-left"
 					>
-						<span className="text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">{labels.cart.viewCart}</span>
-						<span className="mt-1 truncate text-sm font-semibold text-[color:var(--ink)]">
+						<span className="truncate text-sm font-semibold text-[color:var(--ink)]">
 							{totalItems} · {formatPrice(locale, total)}
 						</span>
 					</button>
 					<a
 						href={checkoutHref}
-						className="inline-flex shrink-0 items-center justify-center rounded-[1.5rem] bg-[color:var(--accent)] px-5 py-4 text-sm font-semibold text-white shadow-lg"
+						className="inline-flex shrink-0 items-center justify-center rounded-[1.5rem] bg-[color:var(--accent)] px-5 py-3.5 text-sm font-semibold text-white shadow-lg"
 					>
 						{labels.cart.checkout}
 					</a>
