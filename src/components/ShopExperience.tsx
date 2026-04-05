@@ -318,7 +318,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 							className="fixed inset-0 z-30 bg-black/35 backdrop-blur-[2px] lg:hidden"
 							onClick={() => setCartOpen(false)}
 						/>
-						<div className="fixed inset-x-0 bottom-0 z-40 flex max-h-[72vh] flex-col rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] px-1 pt-4 shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
+						<div className="fixed inset-x-0 bottom-0 z-40 flex max-h-[72vh] flex-col rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 pt-4 shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
 							<div className="mx-auto flex h-full w-full max-w-7xl flex-1 flex-col overflow-hidden">
 								<div className="mx-auto mb-3 h-1.5 w-14 rounded-full bg-black/10" />
 								<div className="mb-3 flex items-center justify-between gap-3">
@@ -357,7 +357,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 										))
 									)}
 								</div>
-								<div className="mt-3 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] px-1 pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+								<div className="mt-3 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
 									<div className="space-y-3 text-sm">
 										<div className="flex justify-between"><span>{labels.cart.subtotal}</span><span>{formatPrice(locale, subtotal)}</span></div>
 										<div className="flex justify-between"><span>{labels.cart.deliveryFee}</span><span>{deliveryFee === 0 ? 'Free' : formatPrice(locale, deliveryFee)}</span></div>
