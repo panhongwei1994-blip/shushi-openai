@@ -29,8 +29,15 @@ export function isLocale(value: string): value is Locale {
 }
 
 export function localePath(locale: Locale, pathname = '/') {
-	const normalized = pathname === '/' ? '' : pathname.replace(/^\/+|\/+$/g, '');
-	return `/${locale}/${normalized}`.replace(/\/+$/, '/') || `/${locale}/`;
+	const normalized = pathname === '/' ? '/' : `/${pathname.replace(/^\/+|\/+$/g, '')}/`;
+	if (locale === defaultLocale) return normalized;
+	return `/${locale}${normalized === '/' ? '/' : normalized}`;
+}
+
+export function stripLocalePrefix(pathname: string) {
+	const match = pathname.match(/^\/([a-z]{2})(\/.*)?$/);
+	if (!match || !isLocale(match[1])) return pathname;
+	return match[2] || '/';
 }
 
 export function absoluteUrl(site: URL, pathname: string) {

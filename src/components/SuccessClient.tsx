@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import type { Locale } from '../lib/i18n';
+import { localePath, type Locale } from '../lib/i18n';
 
 type Props = {
 	locale: Locale;
@@ -52,7 +52,7 @@ export function SuccessClient({ locale, labels }: Props) {
 					<p className="mt-2 font-semibold">{order?.fulfillment ?? 'delivery'}</p>
 				</div>
 			</div>
-			<a href={`/${locale}/`} className="mt-8 inline-flex rounded-full bg-[color:var(--ink)] px-5 py-3 font-medium text-white">
+			<a href={localePath(locale)} className="mt-8 inline-flex rounded-full bg-[color:var(--ink)] px-5 py-3 font-medium text-white">
 				{labels.backHome}
 			</a>
 		</div>

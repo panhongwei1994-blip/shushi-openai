@@ -4,11 +4,11 @@ import { LanguageSwitcher } from '../../components/LanguageSwitcher';
 import { ShopExperience } from '../../components/ShopExperience';
 import { menuCategories, menuProducts } from '../../data/menu';
 import { getDictionary } from '../../lib/translations';
-import { isLocale, locales, type Locale } from '../../lib/i18n';
+import { defaultLocale, isLocale, localePath, locales, type Locale } from '../../lib/i18n';
 import { siteConfig } from '../../lib/site';
 
 export function getStaticPaths() {
-	return locales.map((locale) => ({ params: { locale } }));
+	return locales.filter((locale) => locale !== defaultLocale).map((locale) => ({ params: { locale } }));
 }
 
 const localeParam = Astro.params.locale ?? 'en';
@@ -92,7 +92,7 @@ const bootstrappedCatalog = {
 			<nav class="hidden items-center gap-6 text-sm font-medium text-[color:var(--muted)] md:flex">
 				<a href="#menu">{dict.nav.menu}</a>
 				<a href="#story">{dict.nav.story}</a>
-				<a href={`/${locale}/checkout/`}>{dict.nav.checkout}</a>
+				<a href={localePath(locale, '/checkout/')}>{dict.nav.checkout}</a>
 			</nav>
 			<LanguageSwitcher client:load currentLocale={locale} pathname={pathname} />
 		</div>
@@ -107,7 +107,7 @@ const bootstrappedCatalog = {
 					<p class="mt-4 max-w-xl text-sm leading-7 text-[color:var(--muted)] sm:text-base">{dict.hero.subtitle}</p>
 					<div class="mt-7 flex flex-wrap gap-3">
 						<a href="#menu" class="rounded-full bg-[color:var(--ink)] px-6 py-3 font-medium text-white transition hover:bg-[color:var(--accent)]">{dict.hero.primaryCta}</a>
-						<a href={`/${locale}/checkout/`} class="rounded-full border border-[color:var(--line)] bg-white/70 px-6 py-3 font-medium">{dict.hero.secondaryCta}</a>
+						<a href={localePath(locale, '/checkout/')} class="rounded-full border border-[color:var(--line)] bg-white/70 px-6 py-3 font-medium">{dict.hero.secondaryCta}</a>
 					</div>
 					<div class="mt-8 grid gap-3 sm:grid-cols-3">
 						{dict.highlights.map((item) => (
@@ -168,7 +168,7 @@ const bootstrappedCatalog = {
 			<ShopExperience
 				client:load
 				locale={locale}
-				checkoutHref={`/${locale}/checkout/`}
+				checkoutHref={localePath(locale, '/checkout/')}
 				products={menuProducts}
 				labels={{
 					all: dict.menu.all,

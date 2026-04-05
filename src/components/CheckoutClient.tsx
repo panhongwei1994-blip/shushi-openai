@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { CartProvider, useCart } from './CartProvider';
-import { localeIntlMap, type Locale } from '../lib/i18n';
+import { localeIntlMap, localePath, type Locale } from '../lib/i18n';
 import { siteConfig } from '../lib/site';
 
 type Props = {
@@ -60,7 +60,7 @@ function CheckoutInner({ locale, labels }: Props) {
 		return (
 			<div className="paper-panel rounded-[2rem] p-8 text-center">
 				<p className="text-lg">{labels.checkout.empty}</p>
-				<a href={`/${locale}/`} className="mt-6 inline-flex rounded-full bg-[color:var(--ink)] px-5 py-3 font-medium text-white">
+				<a href={localePath(locale)} className="mt-6 inline-flex rounded-full bg-[color:var(--ink)] px-5 py-3 font-medium text-white">
 					{labels.checkout.backToMenu}
 				</a>
 			</div>
@@ -90,7 +90,7 @@ function CheckoutInner({ locale, labels }: Props) {
 		};
 		localStorage.setItem('shushi:last-order', JSON.stringify(payload));
 		clearCart();
-		window.location.href = `/${locale}/order-success/?order=${orderId}`;
+		window.location.href = `${localePath(locale, '/order-success/')}?order=${orderId}`;
 	};
 
 	return (

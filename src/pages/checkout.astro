@@ -1,18 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { CheckoutClient } from '../../components/CheckoutClient';
-import { getDictionary } from '../../lib/translations';
-import { defaultLocale, isLocale, localePath, locales, type Locale } from '../../lib/i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CheckoutClient } from '../components/CheckoutClient';
+import { getDictionary } from '../lib/translations';
+import { defaultLocale, localePath } from '../lib/i18n';
 
-export function getStaticPaths() {
-	return locales.filter((locale) => locale !== defaultLocale).map((locale) => ({ params: { locale } }));
-}
-
-const localeParam = Astro.params.locale ?? 'en';
-if (!isLocale(localeParam)) throw new Error(`Unsupported locale: ${localeParam}`);
-const locale = localeParam as Locale;
+const locale = defaultLocale;
 const dict = getDictionary(locale);
-const pathname = `/${locale}/checkout/`;
+const pathname = '/checkout/';
 ---
 
 <BaseLayout

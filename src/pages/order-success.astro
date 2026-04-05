@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SuccessClient } from '../components/SuccessClient';
+import { getDictionary } from '../lib/translations';
+import { defaultLocale } from '../lib/i18n';
+
+const locale = defaultLocale;
+const dict = getDictionary(locale);
+const pathname = '/order-success/';
+---
+
+<BaseLayout
+	locale={locale}
+	title={dict.meta.successTitle}
+	description={dict.success.subtitle}
+	pathname={pathname}
+>
+	<main class="section-shell py-14">
+		<SuccessClient
+			client:load
+			locale={locale}
+			labels={dict.success}
+		/>
+	</main>
+</BaseLayout>

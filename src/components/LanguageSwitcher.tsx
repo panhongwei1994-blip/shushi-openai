@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { localeLabels, locales, type Locale } from '../lib/i18n';
+import { localeLabels, localePath, locales, stripLocalePrefix, type Locale } from '../lib/i18n';
 
 type Props = {
 	currentLocale: Locale;
@@ -9,7 +9,7 @@ type Props = {
 
 export function LanguageSwitcher({ currentLocale, pathname }: Props) {
 	const [open, setOpen] = useState(false);
-	const normalized = useMemo(() => pathname.replace(/^\/[a-z]{2}\//, '/'), [pathname]);
+	const normalized = useMemo(() => stripLocalePrefix(pathname), [pathname]);
 
 	return (
 		<div className="relative z-[120]">
@@ -27,7 +27,7 @@ export function LanguageSwitcher({ currentLocale, pathname }: Props) {
 					{locales.map((locale) => (
 						<a
 							key={locale}
-							href={`/${locale}${normalized}`}
+							href={localePath(locale, normalized)}
 							className={`block rounded-2xl px-3 py-2 text-sm transition hover:bg-black/5 ${
 								locale === currentLocale ? 'bg-[color:var(--accent)] text-white' : 'text-[color:var(--ink)]'
 							}`}

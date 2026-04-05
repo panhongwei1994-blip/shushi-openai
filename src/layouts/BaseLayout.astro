@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 
-import { absoluteUrl, localeIntlMap, localeLabels, locales, type Locale } from '../lib/i18n';
+import { absoluteUrl, localeIntlMap, localePath, locales, stripLocalePrefix, type Locale } from '../lib/i18n';
 import { siteConfig } from '../lib/site';
 
 interface Props {
@@ -15,9 +15,10 @@ interface Props {
 const { locale, title, description, pathname, schema = [] } = Astro.props;
 const site = new URL(siteConfig.url);
 const canonical = absoluteUrl(site, pathname);
+const pathnameSuffix = stripLocalePrefix(pathname);
 const alternates = locales.map((altLocale) => ({
 	locale: altLocale,
-	href: absoluteUrl(site, pathname.replace(`/${locale}/`, `/${altLocale}/`)),
+	href: absoluteUrl(site, localePath(altLocale, pathnameSuffix)),
 }));
 
 const restaurantSchema = {
@@ -62,7 +63,7 @@ const restaurantSchema = {
 		{alternates.map((alternate) => (
 			<link rel="alternate" hreflang={alternate.locale} href={alternate.href} />
 		))}
-		<link rel="alternate" hreflang="x-default" href={absoluteUrl(site, '/en/')} />
+		<link rel="alternate" hreflang="x-default" href={absoluteUrl(site, '/')} />
 		<script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
 		{schema.map((entry) => <script type="application/ld+json" set:html={JSON.stringify(entry)} />)}
 	</head>
