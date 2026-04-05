@@ -93,12 +93,33 @@ const bootstrappedCatalog = {
 		</div>
 	</header>
 
-	<main class="pb-36 lg:pb-20">
-	<main class="pb-36 lg:pb-20">
-		<section class="section-shell pt-8 sm:pt-12">
-			<div class="relative grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-				<div class="fade-up relative z-10">
-					<div class="flex items-center gap-3">
+	<main class="pb-24 lg:pb-32">
+		<section class="section-shell pt-6 sm:pt-12">
+			<!-- Hero Container: Vertical on mobile, horizontal on large screens -->
+			<div class="relative flex flex-col gap-8 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16">
+				
+				<!-- Image Container (First on mobile) -->
+				<div class="hero-image-container fade-up order-1 lg:order-2" style="animation-delay: 100ms">
+					<div class="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/20 shadow-2xl sm:aspect-square lg:aspect-[4/5] xl:aspect-[16/10]">
+						<img 
+							src="/images/hero.png" 
+							alt="Premium Sushi Selection" 
+							class="hero-image h-full w-full object-cover"
+						/>
+						
+						<!-- Mobile Glass Badge -->
+						<div class="glass-card absolute bottom-6 left-6 rounded-2xl px-4 py-3 sm:hidden">
+							<div class="flex items-center gap-2">
+								<span class="pulse-dot"></span>
+								<p class="text-[10px] font-bold uppercase tracking-widest text-white">Kitchen Open</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Text Content Container -->
+				<div class="fade-up order-2 lg:order-1" style="animation-delay: 200ms">
+					<div class="hidden items-center gap-3 lg:flex">
 						<div class="pill bg-[color:var(--accent)]/10 text-[color:var(--accent)]">{dict.hero.eyebrow}</div>
 						<div class="flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/50 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[color:var(--muted)] backdrop-blur-sm">
 							<span class="pulse-dot"></span>
@@ -106,16 +127,16 @@ const bootstrappedCatalog = {
 						</div>
 					</div>
 					
-					<h1 class="mt-8 text-6xl font-semibold leading-[1.1] tracking-tight sm:text-7xl lg:text-8xl">
-						{dict.hero.title.split(' ').slice(0, -1).join(' ')} 
-						<span class="text-[color:var(--accent)]">{dict.hero.title.split(' ').slice(-1)}</span>
+					<h1 class="fluid-h1 mt-6 max-w-xl font-semibold">
+						{dict.hero.title.includes(',') ? dict.hero.title.split(',')[0] : dict.hero.title.split('—')[0]}
+						<span class="block text-[color:var(--accent)]">{dict.hero.title.includes(',') ? dict.hero.title.split(',')[1] : dict.hero.title.split('—')[1] || ''}</span>
 					</h1>
 					
-					<p class="mt-8 max-w-xl text-lg leading-relaxed text-[color:var(--muted)] lg:text-xl">
-						{dict.hero.subtitle}
+					<p class="fluid-p mt-6 max-w-md text-[color:var(--muted)]">
+						{dict.hero.subtitle.split(/[。.]/)[0]}{dict.locale === 'zh' ? '。' : '.'}
 					</p>
 					
-					<div class="mt-10 flex flex-wrap gap-4">
+					<div class="mt-8 flex flex-wrap gap-4">
 						<a href="#menu" class="group relative overflow-hidden rounded-full bg-[color:var(--ink)] px-8 py-4 font-semibold text-white transition-all hover:bg-[color:var(--accent)] hover:shadow-2xl hover:shadow-[color:var(--accent)]/30">
 							<span class="relative z-10">{dict.hero.primaryCta}</span>
 						</a>
@@ -124,44 +145,25 @@ const bootstrappedCatalog = {
 						</a>
 					</div>
 
-					<div class="mt-12 grid gap-4 sm:grid-cols-3">
+					<div class="mt-12 hidden gap-6 sm:flex lg:flex-col lg:gap-4 xl:flex-row">
 						{dict.highlights.map((item, index) => (
-							<div class="group flex items-center gap-3 rounded-2xl bg-white/40 p-4 transition-all hover:bg-white/60 hover:shadow-lg" style={`animation-delay:${index * 100}ms`}>
-								<div class="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] group-hover:scale-150 transition-transform"></div>
-								<p class="text-xs font-medium uppercase tracking-wider text-[color:var(--muted)]">{item}</p>
+							<div class="flex items-center gap-2" style={`animation-delay:${index * 100}ms`}>
+								<div class="h-1 w-1 rounded-full bg-[color:var(--gold)]"></div>
+								<p class="text-[10px] font-bold uppercase tracking-widest text-[color:var(--muted)]/60">{item}</p>
 							</div>
 						))}
 					</div>
 				</div>
 
-				<div class="hero-image-container fade-up relative" style="animation-delay: 200ms">
-					<!-- Ambient Glow -->
-					<div class="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-[color:var(--accent)]/10 to-[color:var(--gold)]/20 blur-3xl opacity-50"></div>
-					
-					<div class="relative overflow-hidden rounded-[3rem] border border-white/20 shadow-2xl">
-						<img 
-							src="/images/hero.png" 
-							alt="Premium Sushi Selection" 
-							class="hero-image aspect-[4/5] w-full object-cover lg:aspect-auto h-[600px]"
-						/>
-						
-						<!-- Floating Glass Card -->
-						<div class="glass-card absolute right-6 bottom-6 left-6 rounded-3xl p-6 md:right-10 md:bottom-10 md:left-auto md:w-80">
-							<p class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">Omakase Experience</p>
-							<h2 class="mt-2 text-4xl font-semibold text-white">28 min</h2>
-							<p class="mt-3 text-sm leading-relaxed text-white/80">
-								Freshly prepared by our master chefs and delivered to your doorstep at Kyoto speed.
-							</p>
-							
-							<div class="mt-6 flex items-center gap-4 border-t border-white/10 pt-6">
-								<div class="flex -space-x-3">
-									{[1,2,3].map(() => (
-										<div class="h-8 w-8 rounded-full border-2 border-[color:var(--ink)] bg-[color:var(--bg-deep)]"></div>
-									))}
-								</div>
-								<p class="text-[10px] font-bold uppercase tracking-wider text-white/60">4.9/5 Rating</p>
-							</div>
+				<!-- Desktop Floating Stats -->
+				<div class="glass-card absolute -right-8 bottom-12 hidden rounded-3xl p-6 shadow-2xl backdrop-blur-xl lg:block xl:w-72" style="animation-delay: 300ms">
+					<p class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">Kyoto Quality</p>
+					<h2 class="mt-2 text-4xl font-semibold text-white">28 min</h2>
+					<div class="mt-4 flex items-center gap-2">
+						<div class="flex -space-x-2">
+							{[1,2,3].map(() => <div class="h-6 w-6 rounded-full border border-white/20 bg-white/10" />)}
 						</div>
+						<span class="text-[10px] font-medium text-white/50">4.9/5 Rating</span>
 					</div>
 				</div>
 			</div>
