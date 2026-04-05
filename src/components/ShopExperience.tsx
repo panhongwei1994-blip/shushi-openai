@@ -141,7 +141,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 					</div>
 				</div>
 
-				<div className="-mx-2 grid gap-3 md:mx-0 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+				<div className="grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
 					{filteredProducts.map((product) => (
 						<article key={product.id} className="paper-panel overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
 							<div className="relative aspect-[4/3] overflow-hidden bg-[#efe0cb]">
