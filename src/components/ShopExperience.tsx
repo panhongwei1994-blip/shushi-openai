@@ -318,7 +318,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 							className="fixed inset-0 z-30 bg-black/35 backdrop-blur-[2px] lg:hidden"
 							onClick={() => setCartOpen(false)}
 						/>
-						<div className="fixed inset-x-0 bottom-0 z-40 max-h-[72vh] rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
+						<div className="fixed inset-x-0 bottom-0 z-40 max-h-[72vh] rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] p-5 pb-[calc(5.5rem+env(safe-area-inset-bottom))] shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
 							<div className="mx-auto max-w-7xl">
 								<div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-black/10" />
 								<div className="mb-4 flex items-center justify-between gap-3">
