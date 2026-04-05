@@ -12,7 +12,7 @@ export function LanguageSwitcher({ currentLocale, pathname }: Props) {
 	const normalized = useMemo(() => pathname.replace(/^\/[a-z]{2}\//, '/'), [pathname]);
 
 	return (
-		<div className="relative">
+		<div className="relative z-[120]">
 			<button
 				type="button"
 				onClick={() => setOpen((value) => !value)}
@@ -23,7 +23,7 @@ export function LanguageSwitcher({ currentLocale, pathname }: Props) {
 				<span aria-hidden="true">▾</span>
 			</button>
 			{open && (
-				<div className="absolute right-0 z-20 mt-3 min-w-44 rounded-3xl border border-[color:var(--line)] bg-[color:var(--panel-strong)] p-2 shadow-2xl backdrop-blur">
+				<div className="absolute right-0 z-[130] mt-3 min-w-44 rounded-3xl border border-[color:var(--line)] bg-[color:var(--panel-strong)] p-2 shadow-2xl backdrop-blur">
 					{locales.map((locale) => (
 						<a
 							key={locale}
