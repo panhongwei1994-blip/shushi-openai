@@ -318,8 +318,8 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 							className="fixed inset-0 z-30 bg-black/35 backdrop-blur-[2px] lg:hidden"
 							onClick={() => setCartOpen(false)}
 						/>
-						<div className="fixed inset-x-0 bottom-0 z-40 max-h-[72vh] rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] p-5 pb-[calc(5.5rem+env(safe-area-inset-bottom))] shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
-							<div className="mx-auto max-w-7xl">
+						<div className="fixed inset-x-0 bottom-0 z-40 flex max-h-[72vh] flex-col rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] p-5 shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
+							<div className="mx-auto flex h-full max-w-7xl flex-1 flex-col overflow-hidden">
 								<div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-black/10" />
 								<div className="mb-4 flex items-center justify-between gap-3">
 									<div>
@@ -334,7 +334,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 										×
 									</button>
 								</div>
-								<div className="max-h-[38vh] space-y-3 overflow-y-auto pr-1">
+								<div className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
 									{items.length === 0 ? (
 										<p className="rounded-3xl bg-white/60 p-4 text-sm text-[color:var(--muted)]">{labels.cart.empty}</p>
 									) : (
@@ -357,24 +357,26 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 										))
 									)}
 								</div>
-								<div className="mt-5 space-y-3 border-t border-[color:var(--line)] pt-4 text-sm">
-									<div className="flex justify-between"><span>{labels.cart.subtotal}</span><span>{formatPrice(locale, subtotal)}</span></div>
-									<div className="flex justify-between"><span>{labels.cart.deliveryFee}</span><span>{deliveryFee === 0 ? 'Free' : formatPrice(locale, deliveryFee)}</span></div>
-									<div className="flex justify-between text-base font-semibold"><span>{labels.cart.total}</span><span>{formatPrice(locale, total)}</span></div>
+								<div className="mt-4 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+									<div className="space-y-3 text-sm">
+										<div className="flex justify-between"><span>{labels.cart.subtotal}</span><span>{formatPrice(locale, subtotal)}</span></div>
+										<div className="flex justify-between"><span>{labels.cart.deliveryFee}</span><span>{deliveryFee === 0 ? 'Free' : formatPrice(locale, deliveryFee)}</span></div>
+										<div className="flex justify-between text-base font-semibold"><span>{labels.cart.total}</span><span>{formatPrice(locale, total)}</span></div>
+									</div>
+									<a
+										href={checkoutHref}
+										className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-4 text-sm font-semibold text-white shadow-lg"
+									>
+										{labels.cart.checkout}
+									</a>
 								</div>
-								<a
-									href={checkoutHref}
-									className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-4 text-sm font-semibold text-white shadow-lg"
-								>
-									{labels.cart.checkout}
-								</a>
 							</div>
 						</div>
 					</>
 				)}
 			</div>
 
-			<div className="fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden">
+			<div className={`fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden ${cartOpen ? 'hidden' : ''}`}>
 				<div className="mx-auto flex max-w-7xl items-center gap-3">
 					<button
 						type="button"
