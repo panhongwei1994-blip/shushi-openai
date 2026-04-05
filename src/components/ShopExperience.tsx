@@ -117,8 +117,8 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 
 	return (
 		<>
-		<div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
-			<div className="space-y-6">
+			<div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+				<div className="space-y-6">
 				<div className="paper-panel grain-mask rounded-[2rem] p-5 sm:p-6">
 					<div className="flex flex-wrap gap-3">
 						<button
@@ -173,10 +173,10 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 						</article>
 					))}
 				</div>
-			</div>
+				</div>
 
-			<aside className="hidden lg:sticky lg:top-6 lg:block lg:h-fit">
-				<div className="paper-panel rounded-[2rem] p-6">
+				<aside className="hidden lg:sticky lg:top-6 lg:block lg:h-fit">
+					<div className="paper-panel rounded-[2rem] p-6">
 					<div className="flex items-center justify-between">
 						<div>
 							<p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">{labels.popular}</p>
@@ -213,11 +213,11 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 					<a href={checkoutHref} className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-3 font-medium text-white transition hover:brightness-105">
 						{labels.cart.checkout}
 					</a>
-				</div>
-			</aside>
+					</div>
+				</aside>
 
-			{selectedProduct && (
-				<div className="fixed inset-0 z-40 grid place-items-center bg-black/50 p-4 backdrop-blur-sm">
+				{selectedProduct && (
+					<div className="fixed inset-0 z-40 grid place-items-center bg-black/50 p-4 backdrop-blur-sm">
 					<div className="max-h-[90vh] w-full max-w-3xl overflow-auto rounded-[2rem] bg-[color:var(--panel-strong)] p-6 shadow-2xl">
 						<div className="grid gap-6 md:grid-cols-[1.1fr_minmax(0,1fr)]">
 							<img src={selectedProduct.image} alt={selectedProduct.title[locale]} className="aspect-square w-full rounded-[1.75rem] object-cover" />
@@ -309,11 +309,70 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 							</div>
 						</div>
 					</div>
-				</div>
-			)}
+					</div>
+				)}
 
-			{cartOpen && <div className="fixed inset-0 z-30 bg-transparent" onClick={() => setCartOpen(false)} />}
-		</div>
+				{cartOpen && !selectedProduct && (
+					<>
+						<div
+							className="fixed inset-0 z-30 bg-black/35 backdrop-blur-[2px] lg:hidden"
+							onClick={() => setCartOpen(false)}
+						/>
+						<div className="fixed inset-x-0 bottom-0 z-40 max-h-[72vh] rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
+							<div className="mx-auto max-w-7xl">
+								<div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-black/10" />
+								<div className="mb-4 flex items-center justify-between gap-3">
+									<div>
+										<p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">{labels.popular}</p>
+										<h3 className="mt-2 text-2xl font-semibold">{labels.cart.title}</h3>
+									</div>
+									<button
+										type="button"
+										onClick={() => setCartOpen(false)}
+										className="rounded-full border border-[color:var(--line)] px-4 py-2 text-sm font-medium"
+									>
+										×
+									</button>
+								</div>
+								<div className="max-h-[38vh] space-y-3 overflow-y-auto pr-1">
+									{items.length === 0 ? (
+										<p className="rounded-3xl bg-white/60 p-4 text-sm text-[color:var(--muted)]">{labels.cart.empty}</p>
+									) : (
+										items.map((item) => (
+											<div key={item.key} className="rounded-3xl bg-white/70 p-4">
+												<div className="flex items-start justify-between gap-3">
+													<div>
+														<p className="font-medium">{item.title}</p>
+														<p className="mt-1 text-sm text-[color:var(--muted)]">× {item.quantity}</p>
+													</div>
+													<button
+														type="button"
+														onClick={() => removeItem(item.key)}
+														className="text-sm text-[color:var(--accent)]"
+													>
+														{labels.cart.remove}
+													</button>
+												</div>
+											</div>
+										))
+									)}
+								</div>
+								<div className="mt-5 space-y-3 border-t border-[color:var(--line)] pt-4 text-sm">
+									<div className="flex justify-between"><span>{labels.cart.subtotal}</span><span>{formatPrice(locale, subtotal)}</span></div>
+									<div className="flex justify-between"><span>{labels.cart.deliveryFee}</span><span>{deliveryFee === 0 ? 'Free' : formatPrice(locale, deliveryFee)}</span></div>
+									<div className="flex justify-between text-base font-semibold"><span>{labels.cart.total}</span><span>{formatPrice(locale, total)}</span></div>
+								</div>
+								<a
+									href={checkoutHref}
+									className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-4 text-sm font-semibold text-white shadow-lg"
+								>
+									{labels.cart.checkout}
+								</a>
+							</div>
+						</div>
+					</>
+				)}
+			</div>
 
 			<div className="fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden">
 				<div className="mx-auto flex max-w-7xl items-center gap-3">
