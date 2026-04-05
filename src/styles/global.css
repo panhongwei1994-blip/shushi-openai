@@ -48,6 +48,32 @@ h4 {
 	box-shadow: var(--shadow);
 }
 
+.glass-card {
+	@apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.pulse-dot {
+	@apply relative flex h-2 w-2;
+}
+
+.pulse-dot::before {
+	content: "";
+	@apply absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--accent)] opacity-75;
+}
+
+.pulse-dot::after {
+	content: "";
+	@apply relative inline-flex h-2 w-2 rounded-full bg-[color:var(--accent)];
+}
+
+.hero-image-container:hover .hero-image {
+	transform: scale(1.05) translateY(-5px);
+}
+
+.hero-image {
+	transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 .ink-ring {
 	box-shadow: inset 0 0 0 1px rgba(28, 18, 13, 0.08);
 }
