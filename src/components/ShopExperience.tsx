@@ -141,9 +141,9 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 					</div>
 				</div>
 
-				<div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+				<div className="-mx-2 grid gap-3 md:mx-0 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
 					{filteredProducts.map((product) => (
-						<article key={product.id} className="paper-panel overflow-hidden rounded-[2rem]">
+						<article key={product.id} className="paper-panel overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
 							<div className="relative aspect-[4/3] overflow-hidden bg-[#efe0cb]">
 								<img src={product.image} alt={product.title[locale]} loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105" />
 								<div className="absolute left-4 top-4 flex flex-wrap gap-2">
@@ -154,7 +154,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 									))}
 								</div>
 							</div>
-							<div className="space-y-4 p-5">
+							<div className="space-y-4 p-4 sm:p-5">
 								<div className="flex items-start justify-between gap-3">
 									<div>
 										<h3 className="text-xl font-semibold">{product.title[locale]}</h3>
