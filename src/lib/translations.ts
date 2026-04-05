@@ -100,9 +100,9 @@ export const translations: Record<Locale, Dictionary> = {
 		nav: { menu: 'Menu', story: 'Our craft', checkout: 'Checkout' },
 		hero: {
 			eyebrow: 'Kyoto calm, delivered fast',
-			title: 'Quiet design. Fast sushi delivery.',
+			title: 'Sushi crafted with ceremony, packed for tonight.',
 			subtitle:
-				'Nigiri, sashimi, rolls, drinks, and combos in a faster mobile ordering flow.',
+				'Seasonal nigiri, pristine sashimi, signature rolls, and warm sides arranged in a mobile-first ordering experience designed to feel as refined as the food.',
 			primaryCta: 'Explore menu',
 			secondaryCta: 'Start checkout',
 		},
@@ -202,8 +202,8 @@ export const translations: Record<Locale, Dictionary> = {
 		nav: { menu: '菜单', story: '匠心', checkout: '结账' },
 		hero: {
 			eyebrow: '京都气质，快速送达',
-			title: '更安静的设计，更快的寿司外送。',
-			subtitle: '握寿司、刺身、卷物、饮品和套餐，用更短路径完成下单。',
+			title: '像仪式一样制作的寿司，为今晚准时送到。',
+			subtitle: '时令握寿司、鲜切刺身、招牌卷物与热食小点，装进一个为移动端优化的优雅点餐体验。',
 			primaryCta: '浏览菜单',
 			secondaryCta: '开始结账',
 		},
