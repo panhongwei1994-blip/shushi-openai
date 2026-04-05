@@ -318,10 +318,10 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 							className="fixed inset-0 z-30 bg-black/35 backdrop-blur-[2px] lg:hidden"
 							onClick={() => setCartOpen(false)}
 						/>
-						<div className="fixed inset-x-0 bottom-0 z-40 flex max-h-[72vh] flex-col rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] p-5 shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
+						<div className="fixed inset-x-0 bottom-0 z-40 flex max-h-[72vh] flex-col rounded-t-[2rem] border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] px-3 pt-4 shadow-[0_-24px_60px_rgba(0,0,0,0.16)] lg:hidden">
 							<div className="mx-auto flex h-full max-w-7xl flex-1 flex-col overflow-hidden">
-								<div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-black/10" />
-								<div className="mb-4 flex items-center justify-between gap-3">
+								<div className="mx-auto mb-3 h-1.5 w-14 rounded-full bg-black/10" />
+								<div className="mb-3 flex items-center justify-between gap-3">
 									<div>
 										<p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">{labels.popular}</p>
 										<h3 className="mt-2 text-2xl font-semibold">{labels.cart.title}</h3>
@@ -339,7 +339,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 										<p className="rounded-3xl bg-white/60 p-4 text-sm text-[color:var(--muted)]">{labels.cart.empty}</p>
 									) : (
 										items.map((item) => (
-											<div key={item.key} className="rounded-3xl bg-white/70 p-4">
+											<div key={item.key} className="rounded-3xl bg-white/70 px-4 py-3">
 												<div className="flex items-start justify-between gap-3">
 													<div>
 														<p className="font-medium">{item.title}</p>
@@ -357,7 +357,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 										))
 									)}
 								</div>
-								<div className="mt-4 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+								<div className="mt-3 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)] pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
 									<div className="space-y-3 text-sm">
 										<div className="flex justify-between"><span>{labels.cart.subtotal}</span><span>{formatPrice(locale, subtotal)}</span></div>
 										<div className="flex justify-between"><span>{labels.cart.deliveryFee}</span><span>{deliveryFee === 0 ? 'Free' : formatPrice(locale, deliveryFee)}</span></div>
@@ -376,12 +376,12 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 				)}
 			</div>
 
-			<div className={`fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-3 pb-[calc(0.85rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden ${cartOpen ? 'hidden' : ''}`}>
+			<div className={`fixed inset-x-0 bottom-0 z-20 border-t border-[color:var(--line)] bg-[color:var(--panel-strong)]/95 p-3 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-16px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:hidden ${cartOpen ? 'hidden' : ''}`}>
 				<div className="mx-auto flex max-w-7xl items-center gap-3">
 					<button
 						type="button"
 						onClick={() => setCartOpen((value) => !value)}
-						className="flex min-w-0 flex-1 flex-col items-start rounded-[1.5rem] border border-[color:var(--line)] bg-white/80 px-4 py-2.5 text-left"
+						className="flex min-w-0 flex-1 flex-col items-start rounded-[1.5rem] border border-[color:var(--line)] bg-white/80 px-4 py-3 text-left"
 					>
 						<span className="truncate text-sm font-semibold text-[color:var(--ink)]">
 							{totalItems} · {formatPrice(locale, total)}
@@ -389,7 +389,7 @@ function ExperienceInner({ locale, labels, products, checkoutHref }: Props) {
 					</button>
 					<a
 						href={checkoutHref}
-						className="inline-flex shrink-0 items-center justify-center rounded-[1.5rem] bg-[color:var(--accent)] px-5 py-3.5 text-sm font-semibold text-white shadow-lg"
+						className="inline-flex shrink-0 items-center justify-center rounded-[1.5rem] bg-[color:var(--accent)] px-5 py-4 text-sm font-semibold text-white shadow-lg"
 					>
 						{labels.cart.checkout}
 					</a>
