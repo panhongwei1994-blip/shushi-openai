@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
 import { ShopExperience } from '../../components/ShopExperience';
+import { TestimonialsSlider } from '../../components/TestimonialsSlider';
 import { menuCategories, menuProducts } from '../../data/menu';
 import { getDictionary } from '../../lib/translations';
 import { defaultLocale, isLocale, localePath, locales, type Locale } from '../../lib/i18n';
@@ -200,26 +201,14 @@ const testimonials = dict.testimonials.items.map((item, index) => ({
 
 		<section id="story" class="section-shell pt-12 sm:pt-18">
 			<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_1fr]">
-				<div id="testimonials" class="paper-panel rounded-[2rem] p-5 sm:rounded-[2.5rem] sm:p-8">
-					<p class="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{dict.testimonials.title}</p>
-					<h2 class="mt-3 text-[1.55rem] font-semibold leading-none sm:mt-4 sm:text-[2.25rem]">{dict.testimonials.subtitle}</h2>
-					<p class="mt-3 max-w-2xl text-sm leading-6 text-[color:var(--muted)] sm:mt-4 sm:text-base sm:leading-7">{dict.testimonials.intro}</p>
-					<div class="mt-5 grid gap-3 sm:mt-6 sm:gap-4">
-						{testimonials.map((item) => (
-							<article class="rounded-[1.5rem] bg-white/70 p-4 sm:rounded-[1.9rem] sm:p-5">
-								<div class="flex items-center gap-3">
-									<img src={item.avatar} alt={item.name} loading="lazy" class="h-12 w-12 rounded-full object-cover ring-2 ring-white/80 sm:h-14 sm:w-14" />
-									<div class="min-w-0">
-										<p class="text-base font-semibold text-[color:var(--ink)]">{item.name}</p>
-										<div class="mt-1 flex items-center gap-1 text-[13px] text-[color:var(--gold)] sm:text-sm">
-											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-										</div>
-									</div>
-								</div>
-								<p class="mt-3 text-sm leading-6 text-[color:var(--muted)] sm:mt-4 sm:leading-7">{item.quote}</p>
-							</article>
-						))}
-					</div>
+				<div id="testimonials">
+					<TestimonialsSlider
+						client:load
+						title={dict.testimonials.title}
+						subtitle={dict.testimonials.subtitle}
+						intro={dict.testimonials.intro}
+						items={testimonials}
+					/>
 				</div>
 				<div class="paper-panel rounded-[2rem] p-5 sm:rounded-[2.5rem] sm:p-8">
 					<p class="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{dict.seo.faqTitle}</p>
