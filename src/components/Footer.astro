@@ -59,7 +59,7 @@ const socialLinks = [
 					<a href={`${localePath(locale)}#menu`} class="transition hover:text-[color:var(--ink)]">{dict.footer.offers}</a>
 				</nav>
 
-				<div id="footer-contact" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
+				<div id="footer-contact" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 					<div class="rounded-[1.5rem] bg-white/70 p-4">
 						<p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--muted)]">Hours</p>
 						<p class="mt-3 text-sm leading-6 text-[color:var(--ink)]">Mon to Sun</p>
@@ -69,7 +69,10 @@ const socialLinks = [
 						<p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--muted)]">Contact</p>
 						<p class="mt-3 text-sm leading-6 text-[color:var(--ink)]">{siteConfig.phone}</p>
 						<p class="text-sm leading-6 text-[color:var(--ink)]">{siteConfig.email}</p>
-						<p class="mt-2 text-sm leading-6 text-[color:var(--ink)]">{siteConfig.address.streetAddress}</p>
+					</div>
+					<div class="rounded-[1.5rem] bg-white/70 p-4">
+						<p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--muted)]">Address</p>
+						<p class="mt-3 text-sm leading-6 text-[color:var(--ink)]">{siteConfig.address.streetAddress}</p>
 						<p class="text-sm leading-6 text-[color:var(--ink)]">{siteConfig.address.postalCode}, {siteConfig.address.addressCountry}</p>
 					</div>
 				</div>
