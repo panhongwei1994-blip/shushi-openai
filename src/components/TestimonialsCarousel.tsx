@@ -88,12 +88,12 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 	const dragOffset = touchStartX !== null ? touchDeltaX : pointerStartX !== null ? pointerDeltaX : 0;
 
 	return (
-		<div className="paper-panel rounded-[2.5rem] p-8">
+		<div className="paper-panel rounded-[2rem] p-5 sm:rounded-[2.5rem] sm:p-8">
 			<div className="flex items-start justify-between gap-4">
 				<div className="max-w-2xl">
 					<p className="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{title}</p>
-					<h2 className="section-title mt-4 leading-none">{subtitle}</h2>
-					<p className="section-copy mt-4">{intro}</p>
+					<h2 className="mt-3 text-[1.9rem] font-semibold leading-none sm:mt-4 sm:text-[2.25rem]">{subtitle}</h2>
+					<p className="mt-3 max-w-2xl text-sm leading-6 text-[color:var(--muted)] sm:mt-4 sm:text-base sm:leading-7">{intro}</p>
 				</div>
 				<div className="hidden items-center gap-2 sm:flex">
 					<button
@@ -116,7 +116,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 			</div>
 
 			<div
-				className="mt-8 overflow-hidden"
+				className="mt-5 overflow-hidden sm:mt-8"
 				style={{ touchAction: 'pan-y' }}
 				onTouchStart={handleTouchStart}
 				onTouchMove={handleTouchMove}
@@ -134,7 +134,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 					{pages.map((group, pageIndex) => (
 						<div key={pageIndex} className="grid min-w-full gap-4 lg:grid-cols-2">
 							{group.map((item) => (
-								<article key={item.name} className="rounded-[2.1rem] bg-white/70 p-6 sm:p-7">
+								<article key={item.name} className="rounded-[1.75rem] bg-white/70 p-5 sm:rounded-[2.1rem] sm:p-7">
 									<div className="flex items-center gap-4">
 										<img
 											src={item.avatar}
@@ -153,7 +153,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 											</div>
 										</div>
 									</div>
-									<p className="mt-6 text-[15px] leading-8 text-[color:var(--muted)] sm:text-base">{item.quote}</p>
+									<p className="mt-4 text-sm leading-7 text-[color:var(--muted)] sm:mt-6 sm:text-base sm:leading-8">{item.quote}</p>
 								</article>
 							))}
 						</div>
@@ -161,7 +161,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 				</div>
 			</div>
 
-			<div className="mt-6 flex items-center justify-between sm:justify-center">
+			<div className="mt-4 flex items-center justify-between sm:mt-6 sm:justify-center">
 				<div className="flex items-center gap-2 sm:hidden">
 					<button
 						type="button"
