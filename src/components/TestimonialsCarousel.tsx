@@ -134,7 +134,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 					{pages.map((group, pageIndex) => (
 						<div key={pageIndex} className="grid min-w-full gap-4 lg:grid-cols-2">
 							{group.map((item) => (
-								<article key={item.name} className="rounded-[1.5rem] bg-white/70 p-4 sm:rounded-[2.1rem] sm:p-7">
+								<article key={item.name} className="rounded-[1.4rem] bg-white/70 p-4 sm:rounded-[2.1rem] sm:p-7">
 									<div className="flex items-center gap-3 sm:gap-4">
 										<img
 											src={item.avatar}
@@ -153,7 +153,9 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 											</div>
 										</div>
 									</div>
-									<p className="mt-3 text-sm leading-6 text-[color:var(--muted)] sm:mt-6 sm:text-base sm:leading-8">{item.quote}</p>
+									<p className="mt-3 overflow-hidden text-sm leading-6 text-[color:var(--muted)] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] sm:mt-6 sm:block sm:text-base sm:leading-8">
+										{item.quote}
+									</p>
 								</article>
 							))}
 						</div>
