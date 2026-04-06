@@ -54,12 +54,12 @@ export function TestimonialsSlider({ title, subtitle, intro, items }: Props) {
 	};
 
 	return (
-		<div className="paper-panel rounded-[2rem] p-5 sm:rounded-[2.5rem] sm:p-8">
+		<div className="paper-panel rounded-[2rem] p-4 sm:rounded-[2.5rem] sm:p-6">
 			<div className="flex items-start justify-between gap-4">
 				<div>
 					<p className="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{title}</p>
-					<h2 className="mt-3 text-[1.55rem] font-semibold leading-none sm:mt-4 sm:text-[2.25rem]">{subtitle}</h2>
-					<p className="mt-3 max-w-2xl text-sm leading-6 text-[color:var(--muted)] sm:mt-4 sm:text-base sm:leading-7">{intro}</p>
+					<h2 className="mt-3 text-[1.55rem] font-semibold leading-none sm:mt-4 sm:text-[2.1rem]">{subtitle}</h2>
+					<p className="mt-2 max-w-2xl text-sm leading-6 text-[color:var(--muted)] sm:mt-3 sm:text-base sm:leading-7">{intro}</p>
 				</div>
 				<div className="hidden items-center gap-2 sm:flex">
 					<button
@@ -81,7 +81,7 @@ export function TestimonialsSlider({ title, subtitle, intro, items }: Props) {
 				</div>
 			</div>
 
-			<div className="mt-5 sm:mt-6">
+			<div className="mt-4 sm:mt-5">
 				<div className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
 					<div
 						className="flex transition-transform duration-300 ease-out"
@@ -89,7 +89,7 @@ export function TestimonialsSlider({ title, subtitle, intro, items }: Props) {
 					>
 						{slides.map((slide, slideIndex) => (
 							<div key={slideIndex} className="w-full shrink-0">
-								<div className="grid grid-cols-2 gap-3 sm:gap-4">
+								<div className="grid grid-cols-2 gap-3 sm:gap-3.5">
 									{slide.map((item) => (
 										<article key={item.name} className="rounded-[1.5rem] bg-white/70 p-3 sm:rounded-[1.9rem] sm:p-5">
 											<div className="flex items-center gap-3">
