@@ -25,7 +25,6 @@ const socialLinks = [
 					<span class="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--ink)] text-sm font-semibold text-white">寿</span>
 					<div>
 						<p class="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">{siteConfig.tagline}</p>
-						<p class="mt-1 text-sm text-[color:var(--muted)]">{siteConfig.email}</p>
 					</div>
 				</div>
 				<p class="mt-5 max-w-sm text-sm leading-7 text-[color:var(--muted)]">{siteConfig.description}</p>
@@ -53,13 +52,6 @@ const socialLinks = [
 			</div>
 
 			<div class="grid gap-8 lg:grid-cols-[minmax(0,18rem)_minmax(0,18rem)]">
-				<nav class="grid gap-3 text-sm font-medium text-[color:var(--muted)] sm:grid-cols-2 lg:min-w-[20rem]">
-					<a href={`${localePath(locale)}#story`} class="transition hover:text-[color:var(--ink)]">{dict.footer.about}</a>
-					<a href={`${localePath(locale)}#testimonials`} class="transition hover:text-[color:var(--ink)]">{dict.footer.testimonials}</a>
-					<a href={`${localePath(locale)}#footer-contact`} class="transition hover:text-[color:var(--ink)]">{dict.footer.contact}</a>
-					<a href={`${localePath(locale)}#menu`} class="transition hover:text-[color:var(--ink)]">{dict.footer.offers}</a>
-				</nav>
-
 				<div id="footer-contact" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
 					<div class="rounded-[1.5rem] bg-white/70 p-4">
 						<p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--muted)]">Hours</p>
@@ -74,6 +66,13 @@ const socialLinks = [
 						<p class="text-sm leading-6 text-[color:var(--ink)]">{siteConfig.address.postalCode}, {siteConfig.address.addressCountry}</p>
 					</div>
 				</div>
+
+				<nav class="grid gap-3 text-sm font-medium text-[color:var(--muted)] lg:min-w-[20rem]">
+					<a href={`${localePath(locale)}#story`} class="transition hover:text-[color:var(--ink)]">{dict.footer.about}</a>
+					<a href={`${localePath(locale)}#testimonials`} class="transition hover:text-[color:var(--ink)]">{dict.footer.testimonials}</a>
+					<a href={`${localePath(locale)}#footer-contact`} class="transition hover:text-[color:var(--ink)]">{dict.footer.contact}</a>
+					<a href={`${localePath(locale)}#menu`} class="transition hover:text-[color:var(--ink)]">{dict.footer.offers}</a>
+				</nav>
 			</div>
 		</div>
 
