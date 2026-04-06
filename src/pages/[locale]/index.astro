@@ -196,11 +196,12 @@ const bootstrappedCatalog = {
 		<section id="story" class="section-shell pt-18">
 			<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_1fr]">
 				<div class="paper-panel rounded-[2.5rem] p-8">
-					<h2 class="section-title">{dict.story.title}</h2>
-					<p class="section-copy mt-4">{dict.story.body}</p>
-					<div class="mt-8 grid gap-3 sm:grid-cols-3">
-						{dict.story.stats.map((item) => (
-							<div class="rounded-[1.75rem] bg-white/70 p-4 text-sm leading-6 text-[color:var(--muted)]">{item}</div>
+					<p class="pill bg-[color:var(--accent)]/10 text-[color:var(--accent)]">{dict.nav.story}</p>
+					<h2 class="section-title mt-5 max-w-2xl">{dict.story.title}</h2>
+					<p class="section-copy mt-4 max-w-xl">{dict.story.body}</p>
+					<div class="mt-8 grid gap-3 sm:grid-cols-2">
+						{dict.story.stats.map((item, index) => (
+							<div class:list={['rounded-[1.75rem] bg-white/70 p-4 text-sm leading-6 text-[color:var(--muted)]', index === dict.story.stats.length - 1 && 'sm:col-span-2']}>{item}</div>
 						))}
 					</div>
 				</div>
