@@ -166,6 +166,60 @@ export const menuProducts: Product[] = [
 		description: t('Balanced lunch box with roll, salad, tamago, and a small dessert.', '平衡便当组合，含卷物、沙拉、玉子烧与小甜点。', 'Bento équilibré avec roll, salade, tamago et petit dessert.', 'Ausgewogene Bento-Box mit Roll, Salat, Tamago und Dessert.', 'Caja equilibrada con roll, ensalada, tamago y postre.', 'Bento equilibrado com roll, salada, tamago e sobremesa.', 'Bento equilibrato con roll, insalata, tamago e dessert.'),
 		tagKeys: ['bestSeller', 'pairing'],
 	},
+	{
+		id: 'truffle-salmon-carpaccio',
+		slug: 'truffle-salmon-carpaccio',
+		category: 'sashimi',
+		price: 17,
+		image: '/images/menu/truffle-salmon-carpaccio.png',
+		title: t('Truffle Salmon Carpaccio', '松露三文鱼薄切', 'Carpaccio de saumon à la truffe', 'Trüffel-Lachs-Carpaccio', 'Carpaccio de salmón con trufa', 'Carpaccio de salmão com trufa', 'Carpaccio di salmone al tartufo'),
+		description: t('Thinly sliced salmon with truffle ponzu and microgreens.', '薄切三文鱼搭配松露柚子醋与微型香草。', 'Fines tranches de saumon avec ponzu à la truffe et micropousses.', 'Fein geschnittener Lachs mit Trüffel-Ponzu und Microgreens.', 'Salmón laminado con ponzu de trufa y microgreens.', 'Salmão fatiado com ponzu de trufa e microverdes.', 'Salmone affettato con ponzu al tartufo e microgreens.'),
+		tagKeys: ['fresh', 'signature'],
+		addons: [
+			{ id: 'ponzu', label: t('Extra truffle ponzu', '额外松露柚子醋', 'Ponzu truffe en plus', 'Extra Trüffel-Ponzu', 'Ponzu de trufa extra', 'Ponzu de trufa extra', 'Ponzu al tartufo extra'), price: 1.5 },
+		],
+	},
+	{
+		id: 'volcano-roll',
+		slug: 'volcano-roll',
+		category: 'rolls',
+		price: 18,
+		image: '/images/menu/volcano-roll.png',
+		title: t('Volcano Roll', '火山卷', 'Volcano roll', 'Volcano Roll', 'Volcano roll', 'Volcano roll', 'Volcano roll'),
+		description: t('Spicy tuna and crab baked with spicy mayo and tempura crunch.', '辣金枪鱼与蟹肉搭配辣酱炙烤，并撒上天妇罗脆粒。', 'Thon épicé et chair de crabe gratinés avec mayo épicée et croustillant tempura.', 'Würziger Thunfisch und Krabbe, überbacken mit scharfer Mayo und Tempura-Crunch.', 'Atún picante y cangrejo horneados con mayonesa picante y crujiente tempura.', 'Atum picante e caranguejo gratinados com maionese picante e crocante tempura.', 'Tonno piccante e granchio gratinati con maionese piccante e tempura croccante.'),
+		tagKeys: ['bestSeller', 'crispy'],
+		options: [
+			{
+				id: 'heat',
+				label: t('Spice level', '辣度', 'Niveau d’épices', 'Schärfegrad', 'Nivel de picante', 'Nível de picante', 'Livello di piccante'),
+				choices: [
+					{ id: 'medium', label: t('Medium', '中辣', 'Moyen', 'Mittel', 'Medio', 'Médio', 'Medio') },
+					{ id: 'hot', label: t('Hot', '重辣', 'Fort', 'Scharf', 'Picante', 'Picante', 'Piccante'), priceDelta: 1 },
+				],
+			},
+		],
+	},
+	{
+		id: 'otoro-nigiri-box',
+		slug: 'otoro-nigiri-box',
+		category: 'sushi',
+		price: 24,
+		image: '/images/menu/otoro-nigiri-box.png',
+		title: t('Otoro Nigiri Box', '大腹金枪鱼握寿司盒', 'Coffret nigiri otoro', 'Otoro Nigiri Box', 'Caja de nigiri otoro', 'Caixa de nigiri otoro', 'Box nigiri otoro'),
+		description: t('Premium fatty tuna nigiri with rich umami and a soft finish.', '精选大腹金枪鱼握寿司，油脂丰润，入口柔滑。', 'Nigiri d’otoro premium, riche en umami et fondant.', 'Premium-Otoro-Nigiri mit intensivem Umami und weichem Finish.', 'Nigiri premium de otoro con umami profundo y textura suave.', 'Nigiri premium de otoro com umami intenso e textura macia.', 'Nigiri premium di otoro con umami ricco e finale morbido.'),
+		tagKeys: ['chef', 'fresh'],
+		options: [
+			{
+				id: 'count',
+				label: t('Portion', '份量', 'Portion', 'Portion', 'Porción', 'Porção', 'Porzione'),
+				required: true,
+				choices: [
+					{ id: 'four', label: t('4 pieces', '4贯', '4 pièces', '4 Stück', '4 piezas', '4 peças', '4 pezzi') },
+					{ id: 'six', label: t('6 pieces', '6贯', '6 pièces', '6 Stück', '6 piezas', '6 peças', '6 pezzi'), priceDelta: 6 },
+				],
+			},
+		],
+	},
 ];
 
 export const menuCategories: MenuCategory[] = ['sushi', 'sashimi', 'rolls', 'drinks', 'sides', 'combo-meals'];

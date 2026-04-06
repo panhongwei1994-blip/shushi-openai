@@ -87,6 +87,11 @@ type Dictionary = {
 		faqTitle: string;
 		faqs: Array<{ q: string; a: string }>;
 	};
+	testimonials: {
+		title: string;
+		subtitle: string;
+		items: Array<{ name: string; quote: string }>;
+	};
 };
 
 export const translations: Record<Locale, Dictionary> = {
@@ -192,6 +197,15 @@ export const translations: Record<Locale, Dictionary> = {
 				{ q: 'Do you offer vegetarian rolls and lighter options?', a: 'Yes. The menu includes lighter combinations, sides, and flexible roll choices so guests can build an order that fits their preferences.' },
 			],
 		},
+		testimonials: {
+			title: 'Customers',
+			subtitle: 'Feedback',
+			items: [
+				{ name: 'Craig Bator', quote: 'The nigiri was polished, balanced, and genuinely fresh. It felt closer to a quiet omakase counter than a typical delivery order.' },
+				{ name: 'Martin Dorwart', quote: 'The rolls looked great on arrival and the textures held up well. The dragon-style options and sides made the order feel complete.' },
+				{ name: 'Sarah Johnson', quote: 'Clean flavors, careful plating, and a smooth ordering flow. This is the kind of sushi site that makes reordering easy.' },
+			],
+		},
 	},
 	zh: {
 		meta: {
@@ -247,6 +261,7 @@ export const translations: Record<Locale, Dictionary> = {
 		success: { title: '感谢惠顾，订单已确认。', subtitle: '我们已在本地保存结构化订单数据，后续便于接入后端与支付流程。', orderLabel: '订单号', backHome: '返回菜单' },
 		story: { title: '营业与联系', body: '每日中午开始营业直到晚间，配送与自取都能快速完成。', stats: ['营业时间\n周一至周日\n上午11:30到晚上10:00', '我们的地址\n京都东京街123号\n100-0001，日本', '电子邮件\ninfo@sushizen.com', '电话\n+81 75-555-0123'] },
 		seo: { faqTitle: '常见问题', faqs: [{ q: '寿司是现点现做吗？', a: '是的，菜单围绕现做握寿司、刺身、卷物和热食小点设计，让每一单都更接近新鲜现制的体验。' }, { q: '可以选择配送或自取吗？', a: '可以，结账流程同时支持配送与自取，价格和订单信息会在同一个流程里即时更新。' }, { q: '有适合清淡口味或素食的选择吗？', a: '有，菜单里包含更清爽的搭配、配菜和可灵活选择的卷物，方便顾客按自己的口味组合下单。' }] },
+		testimonials: { title: '顾客', subtitle: '评价', items: [{ name: 'Craig Bator', quote: '握寿司的口感和鲜度都很到位，比一般外送寿司更接近安静板前店的体验。' }, { name: 'Martin Dorwart', quote: '卷物送到时卖相依然很好，口感层次也保留住了，整单吃起来很完整。' }, { name: 'Sarah Johnson', quote: '味道干净、摆盘细致，下单过程也很顺，这类寿司网站会让人愿意反复回购。' }] },
 	},
 	fr: {
 		meta: { homeTitle: 'Livraison de sushi élégante', homeDescription: 'Site de livraison de sushi inspiré du Japon avec commande multilingue et parcours d’achat fluide.', checkoutTitle: 'Paiement', successTitle: 'Commande confirmée' },
@@ -261,6 +276,7 @@ export const translations: Record<Locale, Dictionary> = {
 		success: { title: 'Merci. Votre commande est confirmée.', subtitle: 'Une structure de commande locale a été enregistrée pour faciliter de futures intégrations.', orderLabel: 'Numéro de commande', backHome: 'Retour au menu' },
 		story: { title: 'Visite et contact', body: 'Ouvert tous les jours du déjeuner au dîner, avec livraison et retrait simples à utiliser.', stats: ['Horaires\nDu lundi au dimanche\n11 h 30 à 22 h 00', 'Notre adresse\n123 Tokyo Street, Kyoto\n100-0001, Japon', 'E-mail\ninfo@sushizen.com', 'Téléphone\n+81 75-555-0123'] },
 		seo: { faqTitle: 'Questions fréquentes', faqs: [{ q: 'Les sushi sont-ils préparés à la commande ?', a: 'Oui. Le site est pensé pour des sushi, sashimi, rolls et accompagnements préparés à la commande, avec une sensation de fraîcheur immédiate.' }, { q: 'Le client peut-il choisir livraison ou retrait ?', a: 'Oui. Le checkout gère la livraison et le retrait dans le même parcours, avec les détails de commande mis à jour instantanément.' }, { q: 'Proposez-vous des options végétariennes ou plus légères ?', a: 'Oui. Le menu comprend des combinaisons plus légères, des accompagnements et des rolls flexibles pour s’adapter à différents goûts.' }] },
+		testimonials: { title: 'Clients', subtitle: 'Avis', items: [{ name: 'Craig Bator', quote: 'Le nigiri était net, équilibré et vraiment frais. On retrouve quelque chose d’un comptoir omakase calme.' }, { name: 'Martin Dorwart', quote: 'Les rolls sont arrivés en très bel état et les textures tenaient bien. L’ensemble faisait vrai menu de sushi.' }, { name: 'Sarah Johnson', quote: 'Saveurs propres, présentation soignée et commande fluide. Un site qui donne envie de recommander.' }] },
 	},
 	de: {
 		meta: { homeTitle: 'Eleganter Sushi-Lieferservice', homeDescription: 'Japanisch inspirierter Sushi-Shop mit Mehrsprachigkeit, schnellem Checkout und starker Performance.', checkoutTitle: 'Kasse', successTitle: 'Bestellung bestätigt' },
@@ -275,6 +291,7 @@ export const translations: Record<Locale, Dictionary> = {
 		success: { title: 'Danke. Deine Bestellung ist bestätigt.', subtitle: 'Eine strukturierte Bestellnutzlast wurde lokal gespeichert, damit spätere Integrationen sauber anschließen können.', orderLabel: 'Bestellnummer', backHome: 'Zurück zum Menü' },
 		story: { title: 'Besuch und Kontakt', body: 'Täglich vom Mittag bis zum späten Abend geöffnet, mit einfacher Lieferung und Abholung.', stats: ['Öffnungszeiten\nMontag bis Sonntag\n11:30 bis 22:00 Uhr', 'Unsere Adresse\n123 Tokyo Street, Kyoto\n100-0001, Japan', 'E-Mail\ninfo@sushizen.com', 'Telefon\n+81 75-555-0123'] },
 		seo: { faqTitle: 'Häufige Fragen', faqs: [{ q: 'Wird das Sushi frisch auf Bestellung vorbereitet?', a: 'Ja. Das Menü ist auf frisch zubereitete Sushi, Sashimi, Rolls und warme Beilagen ausgelegt, damit jede Bestellung möglichst frisch wirkt.' }, { q: 'Können Kundinnen und Kunden Lieferung oder Abholung wählen?', a: 'Ja. Im Checkout lassen sich Lieferung und Abholung im selben Ablauf auswählen, inklusive sofort aktualisierter Bestelldetails.' }, { q: 'Gibt es vegetarische oder leichtere Optionen?', a: 'Ja. Die Karte enthält leichtere Kombinationen, Beilagen und flexible Roll-Optionen für unterschiedliche Vorlieben.' }] },
+		testimonials: { title: 'Kunden', subtitle: 'Feedback', items: [{ name: 'Craig Bator', quote: 'Das Nigiri wirkte präzise, ausgewogen und wirklich frisch. Für Lieferung ungewöhnlich nah an einem ruhigen Sushi-Counter.' }, { name: 'Martin Dorwart', quote: 'Die Rolls kamen optisch stark an und die Texturen stimmten noch. Insgesamt ein sehr rundes Sushi-Erlebnis.' }, { name: 'Sarah Johnson', quote: 'Klare Aromen, saubere Präsentation und ein schneller Bestellfluss. So bestellt man gern erneut.' }] },
 	},
 	es: {
 		meta: { homeTitle: 'Entrega de sushi elegante', homeDescription: 'Tienda de sushi inspirada en Japón con i18n, diseño refinado y compra rápida.', checkoutTitle: 'Pago', successTitle: 'Pedido confirmado' },
@@ -289,6 +306,7 @@ export const translations: Record<Locale, Dictionary> = {
 		success: { title: 'Gracias. Tu pedido está confirmado.', subtitle: 'Guardamos una estructura de pedido local para conectar backend y pagos más adelante.', orderLabel: 'Número de pedido', backHome: 'Volver al menú' },
 		story: { title: 'Visita y contacto', body: 'Abierto todos los días desde el almuerzo hasta la noche, con entrega y recogida fáciles de usar.', stats: ['Horario\nDe lunes a domingo\n11:30 a 22:00', 'Nuestra dirección\n123 Tokyo Street, Kyoto\n100-0001, Japón', 'Correo electrónico\ninfo@sushizen.com', 'Teléfono\n+81 75-555-0123'] },
 		seo: { faqTitle: 'Preguntas frecuentes', faqs: [{ q: '¿El sushi se prepara al momento?', a: 'Sí. La experiencia está planteada para sushi, sashimi, rolls y acompañamientos preparados al pedido, con una sensación clara de frescura.' }, { q: '¿Se puede elegir entre entrega y recogida?', a: 'Sí. El checkout permite elegir entrega o recogida dentro del mismo flujo y actualiza los detalles del pedido al instante.' }, { q: '¿Hay opciones vegetarianas o más ligeras?', a: 'Sí. El menú incluye combinaciones más ligeras, acompañamientos y rolls flexibles para distintos gustos.' }] },
+		testimonials: { title: 'Clientes', subtitle: 'Opiniones', items: [{ name: 'Craig Bator', quote: 'El nigiri se sintió preciso, equilibrado y muy fresco. Mucho más cercano a una barra tranquila que a un pedido común.' }, { name: 'Martin Dorwart', quote: 'Los rolls llegaron con muy buena presencia y conservaron bien la textura. El pedido se sintió completo.' }, { name: 'Sarah Johnson', quote: 'Sabores limpios, presentación cuidada y un proceso de pedido fluido. Invita a volver a pedir.' }] },
 	},
 	pt: {
 		meta: { homeTitle: 'Entrega de sushi elegante', homeDescription: 'Loja de sushi inspirada no Japão com i18n, design refinado e checkout fluido.', checkoutTitle: 'Checkout', successTitle: 'Pedido confirmado' },
@@ -303,6 +321,7 @@ export const translations: Record<Locale, Dictionary> = {
 		success: { title: 'Obrigado. O seu pedido foi confirmado.', subtitle: 'Guardámos localmente uma estrutura de pedido para facilitar integrações futuras.', orderLabel: 'Número do pedido', backHome: 'Voltar ao menu' },
 		story: { title: 'Visita e contacto', body: 'Aberto todos os dias do almoço até à noite, com entrega e recolha simples de usar.', stats: ['Horário\nDe segunda a domingo\n11:30 às 22:00', 'Nossa morada\n123 Tokyo Street, Kyoto\n100-0001, Japão', 'Email\ninfo@sushizen.com', 'Telefone\n+81 75-555-0123'] },
 		seo: { faqTitle: 'Perguntas frequentes', faqs: [{ q: 'O sushi é preparado na hora?', a: 'Sim. O site foi pensado para sushi, sashimi, rolls e acompanhamentos preparados por encomenda, com foco numa perceção clara de frescura.' }, { q: 'É possível escolher entrega ou recolha?', a: 'Sim. O checkout permite alternar entre entrega e recolha no mesmo fluxo, com os detalhes do pedido atualizados de imediato.' }, { q: 'Existem opções vegetarianas ou mais leves?', a: 'Sim. O menu inclui combinações mais leves, acompanhamentos e rolls flexíveis para diferentes preferências.' }] },
+		testimonials: { title: 'Clientes', subtitle: 'Feedback', items: [{ name: 'Craig Bator', quote: 'O nigiri estava preciso, equilibrado e realmente fresco. Mais próximo de um balcão calmo do que de uma encomenda comum.' }, { name: 'Martin Dorwart', quote: 'Os rolls chegaram muito bem apresentados e mantiveram boa textura. O pedido pareceu completo.' }, { name: 'Sarah Johnson', quote: 'Sabores limpos, apresentação cuidada e um fluxo de encomenda muito simples. Dá vontade de repetir.' }] },
 	},
 	it: {
 		meta: { homeTitle: 'Consegna sushi elegante', homeDescription: 'Sito sushi ispirato al Giappone con i18n, design raffinato e checkout veloce.', checkoutTitle: 'Checkout', successTitle: 'Ordine confermato' },
@@ -317,6 +336,7 @@ export const translations: Record<Locale, Dictionary> = {
 		success: { title: 'Grazie. Il tuo ordine è confermato.', subtitle: 'Abbiamo salvato localmente un payload ordine strutturato per collegare facilmente backend e pagamenti in futuro.', orderLabel: 'Numero ordine', backHome: 'Torna al menu' },
 		story: { title: 'Visita e contatti', body: 'Aperti ogni giorno dal pranzo fino alla sera, con consegna e ritiro semplici da usare.', stats: ['Orari di apertura\nDal lunedì alla domenica\n11:30 - 22:00', 'Il nostro indirizzo\n123 Tokyo Street, Kyoto\n100-0001, Giappone', 'Email\ninfo@sushizen.com', 'Telefono\n+81 75-555-0123'] },
 		seo: { faqTitle: 'Domande frequenti', faqs: [{ q: 'Il sushi viene preparato al momento?', a: 'Sì. L’esperienza è pensata per sushi, sashimi, rolls e contorni preparati su ordinazione, così ogni ordine comunica freschezza.' }, { q: 'Si può scegliere tra consegna e ritiro?', a: 'Sì. Il checkout gestisce consegna e ritiro nello stesso flusso e aggiorna subito i dettagli dell’ordine.' }, { q: 'Ci sono opzioni vegetariane o più leggere?', a: 'Sì. Il menu include combinazioni più leggere, contorni e rolls flessibili per preferenze diverse.' }] },
+		testimonials: { title: 'Clienti', subtitle: 'Feedback', items: [{ name: 'Craig Bator', quote: 'Il nigiri era preciso, equilibrato e davvero fresco. Più vicino a un bancone tranquillo che a un ordine qualsiasi.' }, { name: 'Martin Dorwart', quote: 'I rolls sono arrivati con un bell’aspetto e una buona texture. L’ordine risultava completo.' }, { name: 'Sarah Johnson', quote: 'Sapori puliti, presentazione curata e un flusso d’ordine scorrevole. Fa venire voglia di ordinare di nuovo.' }] },
 	},
 };
 

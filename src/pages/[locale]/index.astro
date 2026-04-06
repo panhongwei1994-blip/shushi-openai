@@ -228,6 +228,26 @@ const bootstrappedCatalog = {
 				</div>
 			</div>
 		</section>
+
+		<section class="section-shell pt-18">
+			<div class="paper-panel rounded-[2.5rem] p-8">
+				<p class="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{dict.testimonials.title}</p>
+				<h2 class="section-title mt-5">{dict.testimonials.subtitle}</h2>
+				<div class="mt-8 grid gap-4 lg:grid-cols-3">
+					{dict.testimonials.items.map((item) => (
+						<article class="rounded-[1.75rem] bg-white/70 p-5">
+							<div class="flex items-center gap-3">
+								<div class="grid h-11 w-11 place-items-center rounded-full bg-[color:var(--ink)] text-sm font-semibold text-white">
+									{item.name.split(' ').map((part) => part[0]).join('').slice(0, 2)}
+								</div>
+								<p class="text-base font-semibold text-[color:var(--ink)]">{item.name}</p>
+							</div>
+							<p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">{item.quote}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
 	</main>
 
 	<script type="application/json" id="menu-bootstrap" set:html={JSON.stringify(bootstrappedCatalog)} />
