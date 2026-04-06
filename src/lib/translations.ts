@@ -103,7 +103,7 @@ export const translations: Record<Locale, Dictionary> = {
 			checkoutTitle: 'Checkout',
 			successTitle: 'Order confirmed',
 		},
-		nav: { menu: 'Menu', story: 'Our craft', checkout: 'Checkout' },
+		nav: { menu: 'Menu', story: 'Contact Us', checkout: 'Checkout' },
 		hero: {
 			eyebrow: 'Kyoto calm, delivered fast',
 			title: 'Sushi crafted with ceremony, packed for tonight.',
@@ -217,7 +217,7 @@ export const translations: Record<Locale, Dictionary> = {
 			checkoutTitle: '结账',
 			successTitle: '订单已确认',
 		},
-		nav: { menu: '菜单', story: '匠心', checkout: '结账' },
+		nav: { menu: '菜单', story: '联系我们', checkout: '结账' },
 		hero: {
 			eyebrow: '京都气质，快速送达',
 			title: '像仪式一样制作的寿司，为今晚准时送到。',
@@ -268,7 +268,7 @@ export const translations: Record<Locale, Dictionary> = {
 	},
 	fr: {
 		meta: { homeTitle: 'Livraison de sushi élégante', homeDescription: 'Site de livraison de sushi inspiré du Japon avec commande multilingue et parcours d’achat fluide.', checkoutTitle: 'Paiement', successTitle: 'Commande confirmée' },
-		nav: { menu: 'Menu', story: 'Savoir-faire', checkout: 'Paiement' },
+		nav: { menu: 'Menu', story: 'Contact', checkout: 'Paiement' },
 		hero: { eyebrow: 'Le calme de Kyoto, livré vite', title: 'Des sushi préparés avec cérémonie, livrés pour ce soir.', subtitle: 'Nigiri de saison, sashimi impeccable, rolls signatures et accompagnements chauds dans une expérience mobile raffinée.', primaryCta: 'Voir le menu', secondaryCta: 'Commander' },
 		highlights: ['28 min de livraison en moyenne', 'Poisson premium préparé chaque jour', 'Stripe ou paiement à la livraison'],
 		menu: { title: 'Menu sélectionné', subtitle: 'Filtrez par catégorie, ouvrez les détails produit, personnalisez puis ajoutez au panier.', all: 'Tout', categories: { sushi: 'Sushi', sashimi: 'Sashimi', rolls: 'Rolls', drinks: 'Boissons', sides: 'Accompagnements', 'combo-meals': 'Menus' }, details: 'Personnaliser', addToCart: 'Ajouter', popular: 'Les favoris' },
@@ -283,7 +283,7 @@ export const translations: Record<Locale, Dictionary> = {
 	},
 	de: {
 		meta: { homeTitle: 'Eleganter Sushi-Lieferservice', homeDescription: 'Japanisch inspirierter Sushi-Shop mit Mehrsprachigkeit, schnellem Checkout und starker Performance.', checkoutTitle: 'Kasse', successTitle: 'Bestellung bestätigt' },
-		nav: { menu: 'Menü', story: 'Handwerk', checkout: 'Kasse' },
+		nav: { menu: 'Menü', story: 'Kontakt', checkout: 'Kasse' },
 		hero: { eyebrow: 'Kyoto-Ruhe, schnell geliefert', title: 'Sushi mit Ritual gefertigt, für heute Abend verpackt.', subtitle: 'Saisonales Nigiri, feines Sashimi, Signature Rolls und warme Beilagen in einem mobilen Bestellfluss.', primaryCta: 'Menü ansehen', secondaryCta: 'Zur Kasse' },
 		highlights: ['28 Min. Lieferzeit im Schnitt', 'Premium-Fisch täglich geschnitten', 'Stripe oder Barzahlung bei Lieferung'],
 		menu: { title: 'Kuratiertes Menü', subtitle: 'Nach Kategorien filtern, Produktdetails öffnen, anpassen und in den Warenkorb legen.', all: 'Alle', categories: { sushi: 'Sushi', sashimi: 'Sashimi', rolls: 'Rolls', drinks: 'Getränke', sides: 'Beilagen', 'combo-meals': 'Kombis' }, details: 'Anpassen', addToCart: 'In den Warenkorb', popular: 'Besonders beliebt' },
@@ -298,7 +298,7 @@ export const translations: Record<Locale, Dictionary> = {
 	},
 	es: {
 		meta: { homeTitle: 'Entrega de sushi elegante', homeDescription: 'Tienda de sushi inspirada en Japón con i18n, diseño refinado y compra rápida.', checkoutTitle: 'Pago', successTitle: 'Pedido confirmado' },
-		nav: { menu: 'Menú', story: 'Artesanía', checkout: 'Pago' },
+		nav: { menu: 'Menú', story: 'Contacto', checkout: 'Pago' },
 		hero: { eyebrow: 'Calma de Kioto, entrega rápida', title: 'Sushi preparado con ceremonia, listo para esta noche.', subtitle: 'Nigiri de temporada, sashimi impecable, rolls de autor y platos calientes en una experiencia móvil pulida.', primaryCta: 'Ver menú', secondaryCta: 'Ir al pago' },
 		highlights: ['28 min de entrega promedio', 'Pescado premium cortado cada día', 'Stripe o efectivo al recibir'],
 		menu: { title: 'Menú curado', subtitle: 'Filtra por categoría, abre detalles, personaliza y añade al carrito.', all: 'Todo', categories: { sushi: 'Sushi', sashimi: 'Sashimi', rolls: 'Rolls', drinks: 'Bebidas', sides: 'Acompañamientos', 'combo-meals': 'Combos' }, details: 'Personalizar', addToCart: 'Añadir', popular: 'Favoritos' },
@@ -313,7 +313,7 @@ export const translations: Record<Locale, Dictionary> = {
 	},
 	pt: {
 		meta: { homeTitle: 'Entrega de sushi elegante', homeDescription: 'Loja de sushi inspirada no Japão com i18n, design refinado e checkout fluido.', checkoutTitle: 'Checkout', successTitle: 'Pedido confirmado' },
-		nav: { menu: 'Menu', story: 'Artesanato', checkout: 'Checkout' },
+		nav: { menu: 'Menu', story: 'Contacto', checkout: 'Checkout' },
 		hero: { eyebrow: 'Calma de Kyoto, entrega rápida', title: 'Sushi preparado com cerimónia, pronto para esta noite.', subtitle: 'Nigiri sazonal, sashimi impecável, rolls de assinatura e acompanhamentos quentes numa experiência mobile-first.', primaryCta: 'Ver menu', secondaryCta: 'Ir para checkout' },
 		highlights: ['28 min de entrega média', 'Peixe premium cortado diariamente', 'Stripe ou dinheiro na entrega'],
 		menu: { title: 'Menu curado', subtitle: 'Filtre por categoria, abra detalhes do produto, personalize e adicione ao carrinho.', all: 'Tudo', categories: { sushi: 'Sushi', sashimi: 'Sashimi', rolls: 'Rolls', drinks: 'Bebidas', sides: 'Acompanhamentos', 'combo-meals': 'Combos' }, details: 'Personalizar', addToCart: 'Adicionar', popular: 'Favoritos' },
@@ -328,7 +328,7 @@ export const translations: Record<Locale, Dictionary> = {
 	},
 	it: {
 		meta: { homeTitle: 'Consegna sushi elegante', homeDescription: 'Sito sushi ispirato al Giappone con i18n, design raffinato e checkout veloce.', checkoutTitle: 'Checkout', successTitle: 'Ordine confermato' },
-		nav: { menu: 'Menu', story: 'Maestria', checkout: 'Checkout' },
+		nav: { menu: 'Menu', story: 'Contatti', checkout: 'Checkout' },
 		hero: { eyebrow: 'Calma di Kyoto, consegna rapida', title: 'Sushi preparato con rito, pronto per stasera.', subtitle: 'Nigiri stagionali, sashimi impeccabile, rolls signature e contorni caldi in un’esperienza mobile-first raffinata.', primaryCta: 'Scopri il menu', secondaryCta: 'Vai al checkout' },
 		highlights: ['28 min di consegna media', 'Pesce premium tagliato ogni giorno', 'Stripe o contanti alla consegna'],
 		menu: { title: 'Menu curato', subtitle: 'Filtra per categoria, apri i dettagli prodotto, personalizza e aggiungi al carrello.', all: 'Tutto', categories: { sushi: 'Sushi', sashimi: 'Sashimi', rolls: 'Rolls', drinks: 'Bevande', sides: 'Contorni', 'combo-meals': 'Combo' }, details: 'Personalizza', addToCart: 'Aggiungi', popular: 'Più amati' },
