@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 
+import Footer from '../components/Footer.astro';
 import { absoluteUrl, localeIntlMap, localePath, locales, stripLocalePrefix, type Locale } from '../lib/i18n';
 import { siteConfig } from '../lib/site';
 
@@ -69,5 +70,6 @@ const restaurantSchema = {
 	</head>
 	<body class="selection:bg-[color:var(--accent)]/20">
 		<slot />
+		<Footer locale={locale} />
 	</body>
 </html>
