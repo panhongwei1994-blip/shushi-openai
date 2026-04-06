@@ -1,4 +1,4 @@
-import type { TouchEvent } from 'react';
+import type { PointerEvent, TouchEvent } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
 type TestimonialItem = {
@@ -27,6 +27,8 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 	const [page, setPage] = useState(0);
 	const [touchStartX, setTouchStartX] = useState<number | null>(null);
 	const [touchDeltaX, setTouchDeltaX] = useState(0);
+	const [pointerStartX, setPointerStartX] = useState<number | null>(null);
+	const [pointerDeltaX, setPointerDeltaX] = useState(0);
 
 	useEffect(() => {
 		const update = () => {
@@ -65,6 +67,26 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 		setTouchDeltaX(0);
 	};
 
+	const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+		setPointerStartX(event.clientX);
+		setPointerDeltaX(0);
+	};
+
+	const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+		if (pointerStartX === null) return;
+		setPointerDeltaX(event.clientX - pointerStartX);
+	};
+
+	const handlePointerEnd = () => {
+		if (pointerStartX === null) return;
+		if (pointerDeltaX <= -50) next();
+		if (pointerDeltaX >= 50) previous();
+		setPointerStartX(null);
+		setPointerDeltaX(0);
+	};
+
+	const dragOffset = touchStartX !== null ? touchDeltaX : pointerStartX !== null ? pointerDeltaX : 0;
+
 	return (
 		<div className="paper-panel rounded-[2.5rem] p-8">
 			<div className="flex items-start justify-between gap-4">
@@ -94,14 +116,20 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 			</div>
 
 			<div
-				className="mt-8 overflow-hidden touch-pan-y"
+				className="mt-8 overflow-hidden"
+				style={{ touchAction: 'pan-y' }}
 				onTouchStart={handleTouchStart}
 				onTouchMove={handleTouchMove}
 				onTouchEnd={handleTouchEnd}
+				onPointerDown={handlePointerDown}
+				onPointerMove={handlePointerMove}
+				onPointerUp={handlePointerEnd}
+				onPointerCancel={handlePointerEnd}
+				onPointerLeave={handlePointerEnd}
 			>
 				<div
 					className="flex transition-transform duration-500 ease-out"
-					style={{ transform: `translateX(-${page * 100}%)` }}
+					style={{ transform: `translateX(calc(-${page * 100}% + ${dragOffset}px))` }}
 				>
 					{pages.map((group, pageIndex) => (
 						<div key={pageIndex} className="grid min-w-full gap-4 lg:grid-cols-2">
