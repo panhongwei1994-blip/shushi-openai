@@ -1,3 +1,4 @@
+import type { TouchEvent } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
 type TestimonialItem = {
@@ -24,6 +25,8 @@ function chunkItems(items: TestimonialItem[], size: number) {
 export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 	const [perPage, setPerPage] = useState(1);
 	const [page, setPage] = useState(0);
+	const [touchStartX, setTouchStartX] = useState<number | null>(null);
+	const [touchDeltaX, setTouchDeltaX] = useState(0);
 
 	useEffect(() => {
 		const update = () => {
@@ -44,20 +47,38 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 	const next = () => setPage((current) => (current + 1) % pages.length);
 	const previous = () => setPage((current) => (current - 1 + pages.length) % pages.length);
 
+	const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+		setTouchStartX(event.touches[0]?.clientX ?? null);
+		setTouchDeltaX(0);
+	};
+
+	const handleTouchMove = (event: TouchEvent<HTMLDivElement>) => {
+		if (touchStartX === null) return;
+		setTouchDeltaX(event.touches[0].clientX - touchStartX);
+	};
+
+	const handleTouchEnd = () => {
+		if (touchStartX === null) return;
+		if (touchDeltaX <= -50) next();
+		if (touchDeltaX >= 50) previous();
+		setTouchStartX(null);
+		setTouchDeltaX(0);
+	};
+
 	return (
 		<div className="paper-panel rounded-[2.5rem] p-8">
-			<div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-				<div>
+			<div className="flex items-start justify-between gap-4">
+				<div className="max-w-2xl">
 					<p className="pill bg-[color:var(--gold)]/15 text-[color:var(--gold)]">{title}</p>
-					<h2 className="section-title mt-5">{subtitle}</h2>
-					<p className="section-copy mt-4 max-w-2xl">{intro}</p>
+					<h2 className="section-title mt-4 leading-none">{subtitle}</h2>
+					<p className="section-copy mt-4">{intro}</p>
 				</div>
-				<div className="flex items-center gap-3">
+				<div className="hidden items-center gap-2 sm:flex">
 					<button
 						type="button"
 						onClick={previous}
 						aria-label="Previous slide"
-						className="grid h-11 w-11 place-items-center rounded-full border border-[color:var(--line)] bg-white/80 text-lg text-[color:var(--ink)] transition hover:bg-white"
+						className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--line)] bg-white/80 text-base text-[color:var(--ink)] transition hover:bg-white"
 					>
 						‹
 					</button>
@@ -65,14 +86,19 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 						type="button"
 						onClick={next}
 						aria-label="Next slide"
-						className="grid h-11 w-11 place-items-center rounded-full border border-[color:var(--line)] bg-white/80 text-lg text-[color:var(--ink)] transition hover:bg-white"
+						className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--line)] bg-white/80 text-base text-[color:var(--ink)] transition hover:bg-white"
 					>
 						›
 					</button>
 				</div>
 			</div>
 
-			<div className="mt-8 overflow-hidden">
+			<div
+				className="mt-8 overflow-hidden touch-pan-y"
+				onTouchStart={handleTouchStart}
+				onTouchMove={handleTouchMove}
+				onTouchEnd={handleTouchEnd}
+			>
 				<div
 					className="flex transition-transform duration-500 ease-out"
 					style={{ transform: `translateX(-${page * 100}%)` }}
@@ -80,7 +106,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 					{pages.map((group, pageIndex) => (
 						<div key={pageIndex} className="grid min-w-full gap-4 lg:grid-cols-2">
 							{group.map((item) => (
-								<article key={item.name} className="rounded-[2rem] bg-white/70 p-6 lg:p-7">
+								<article key={item.name} className="rounded-[2.1rem] bg-white/70 p-6 sm:p-7">
 									<div className="flex items-center gap-4">
 										<img
 											src={item.avatar}
@@ -89,7 +115,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 											className="h-16 w-16 rounded-full object-cover ring-2 ring-white/80"
 										/>
 										<div>
-											<p className="text-lg font-semibold text-[color:var(--ink)]">{item.name}</p>
+											<p className="text-[1.05rem] font-semibold text-[color:var(--ink)]">{item.name}</p>
 											<div className="mt-2 flex items-center gap-1 text-[color:var(--gold)]">
 												{Array.from({ length: 5 }).map((_, index) => (
 													<span key={index} aria-hidden="true" className="text-sm">
@@ -99,7 +125,7 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 											</div>
 										</div>
 									</div>
-									<p className="mt-6 text-[15px] leading-8 text-[color:var(--muted)]">{item.quote}</p>
+									<p className="mt-6 text-[15px] leading-8 text-[color:var(--muted)] sm:text-base">{item.quote}</p>
 								</article>
 							))}
 						</div>
@@ -107,7 +133,25 @@ export function TestimonialsCarousel({ title, subtitle, intro, items }: Props) {
 				</div>
 			</div>
 
-			<div className="mt-6 flex items-center justify-center gap-2">
+			<div className="mt-6 flex items-center justify-between sm:justify-center">
+				<div className="flex items-center gap-2 sm:hidden">
+					<button
+						type="button"
+						onClick={previous}
+						aria-label="Previous slide"
+						className="grid h-8 w-8 place-items-center rounded-full border border-[color:var(--line)] bg-white/80 text-sm text-[color:var(--ink)]"
+					>
+						‹
+					</button>
+					<button
+						type="button"
+						onClick={next}
+						aria-label="Next slide"
+						className="grid h-8 w-8 place-items-center rounded-full border border-[color:var(--line)] bg-white/80 text-sm text-[color:var(--ink)]"
+					>
+						›
+					</button>
+				</div>
 				{pages.map((_, index) => (
 					<button
 						key={index}
