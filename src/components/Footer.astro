@@ -51,14 +51,7 @@ const socialLinks = [
 				</div>
 			</div>
 
-			<div class="grid gap-8 lg:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] lg:items-start">
-				<nav class="grid gap-2 text-sm font-medium text-[color:var(--muted)] lg:min-w-[12rem]">
-					<a href={`${localePath(locale)}#story`} class="transition hover:text-[color:var(--ink)]">{dict.footer.about}</a>
-					<a href={`${localePath(locale)}#testimonials`} class="transition hover:text-[color:var(--ink)]">{dict.footer.testimonials}</a>
-					<a href={`${localePath(locale)}#footer-contact`} class="transition hover:text-[color:var(--ink)]">{dict.footer.contact}</a>
-					<a href={`${localePath(locale)}#menu`} class="transition hover:text-[color:var(--ink)]">{dict.footer.offers}</a>
-				</nav>
-
+			<div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,12rem)] lg:items-start">
 				<div id="footer-contact" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 					<div class="rounded-[1.5rem] bg-white/70 p-4">
 						<p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--muted)]">Hours</p>
@@ -76,6 +69,13 @@ const socialLinks = [
 						<p class="text-sm leading-6 text-[color:var(--ink)]">{siteConfig.address.postalCode}, {siteConfig.address.addressCountry}</p>
 					</div>
 				</div>
+
+				<nav class="grid gap-2 text-sm font-medium text-[color:var(--muted)] lg:min-w-[12rem] lg:justify-self-end">
+					<a href={`${localePath(locale)}#story`} class="transition hover:text-[color:var(--ink)]">{dict.footer.about}</a>
+					<a href={`${localePath(locale)}#testimonials`} class="transition hover:text-[color:var(--ink)]">{dict.footer.testimonials}</a>
+					<a href={`${localePath(locale)}#footer-contact`} class="transition hover:text-[color:var(--ink)]">{dict.footer.contact}</a>
+					<a href={`${localePath(locale)}#menu`} class="transition hover:text-[color:var(--ink)]">{dict.footer.offers}</a>
+				</nav>
 			</div>
 		</div>
 
